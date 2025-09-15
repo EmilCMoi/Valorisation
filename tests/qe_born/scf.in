@@ -1,0 +1,39 @@
+&CONTROL
+  calculation = 'scf'
+  outdir = './out/'
+  prefix = 'born'
+  pseudo_dir = './pseudo/'
+  tprnfor = .true.
+  tstress = .true.
+  verbosity = 'high'
+/
+&SYSTEM
+  ecutrho =   3.3600000000d+02
+  ecutwfc =   8.4000000000d+01
+  ibrav = 0
+  nat = 4
+  nosym = .false.
+  ibrav=4
+  A=2.4860105504 ! Lattice parameters in Angstrom
+  C=30.0000000000
+  ntyp = 2
+  occupations = 'fixed'
+  vdw_corr = 'DFT-D'
+  assume_isolated = '2D'
+/
+&ELECTRONS
+  conv_thr =   1.0000000000d-10
+  mixing_beta =   4.0000000000d-01
+/
+&IONS
+/
+ATOMIC_SPECIES
+B      10.811  B.UPF
+N      14.0067 N.UPF
+ATOMIC_POSITIONS (crystal)
+B                0.0000000000        0.0000000000        0.4518129
+B                0.3333333333        0.6666666667        0.5481903
+N                0.3333333333        0.6666666667        0.4516829
+N                0.6666666667        0.3333333333        0.5483139
+K_POINTS automatic
+30 30 1 0 0 0

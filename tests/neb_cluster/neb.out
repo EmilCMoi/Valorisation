@@ -1,0 +1,763 @@
+
+     Program NEB v.7.4 starts on  7Aug2025 at 15:41: 1 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI & OpenMP), running on      80 processor cores
+     Number of MPI processes:                 4
+     Threads/MPI process:                    20
+
+     MPI processes distributed on     1 nodes
+     833944 MiB available memory on the printing compute node when the environment starts
+ 
+
+     Parsing file: neb.in
+     Message from routine parse_and_split:
+     parsing error?
+     Message from routine parse_and_split:
+     parsing error?
+     Message from routine parse_and_split:
+     parsing error?
+     Reading input from pw_1.in
+     Reading input from pw_2.in
+
+     File ./out/neb_1/neb.update deleted, as requested
+
+     File ./out/neb_1/PW.out deleted, as requested
+
+     File ./out/neb_2/neb.update deleted, as requested
+
+     File ./out/neb_2/PW.out deleted, as requested
+
+     File ./out/neb_3/neb.update deleted, as requested
+
+     File ./out/neb_3/PW.out deleted, as requested
+
+     File ./out/neb_4/neb.update deleted, as requested
+
+     File ./out/neb_4/PW.out deleted, as requested
+
+     File ./out/neb_5/neb.update deleted, as requested
+
+     File ./out/neb_5/PW.out deleted, as requested
+
+     File ./out/neb_6/neb.update deleted, as requested
+
+     File ./out/neb_6/PW.out deleted, as requested
+
+     File ./out/neb_7/neb.update deleted, as requested
+
+     File ./out/neb_7/PW.out deleted, as requested
+
+     File ./out/neb_8/neb.update deleted, as requested
+
+     File ./out/neb_8/PW.out deleted, as requested
+
+     File ./out/neb_9/neb.update deleted, as requested
+
+     File ./out/neb_9/PW.out deleted, as requested
+
+     initial path length           =  3.8596 bohr
+     initial inter-image distance  =  0.3860 bohr
+ 
+     string_method                 =    neb
+     restart_mode                  =    from_scratch
+     opt_scheme                    =    broyden
+     num_of_images                 =    11
+     nstep_path                    =    150
+     CI_scheme                     =    no-CI
+     first_last_opt                =    T
+     use_freezing                  =    F
+     ds                            =    1.0000 a.u.
+     k_max                         =    0.1000 a.u.
+     k_min                         =    0.1000 a.u.
+     suggested k_max               =    0.6169 a.u.
+     suggested k_min               =    0.6169 a.u.
+     path_thr                      =    0.0001 eV / A
+
+     ------------------------------ iteration   1 ------------------------------
+
+     tcpu =      0.6    self-consistency for image   1
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =     16.2    self-consistency for image   2
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    118.5    self-consistency for image   3
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    170.5    self-consistency for image   4
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    324.2    self-consistency for image   5
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    424.6    self-consistency for image   6
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    471.9    self-consistency for image   7
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    571.4    self-consistency for image   8
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    635.0    self-consistency for image   9
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    670.2    self-consistency for image  10
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    716.6    self-consistency for image  11
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+
+     activation energy (->) =   0.004619 eV
+     activation energy (<-) =   0.004614 eV
+
+     image        energy (eV)        error (eV/A)        frozen
+
+         1       -726.5273717            0.002249            F
+         2       -726.5268393            0.009388            F
+         3       -726.5255947            0.014896            F
+         4       -726.5241969            0.016210            F
+         5       -726.5231395            0.013747            F
+         6       -726.5227528            0.012058            F
+         7       -726.5231481            0.013110            F
+         8       -726.5242059            0.012815            F
+         9       -726.5255969            0.011716            F
+        10       -726.5268357            0.010505            F
+        11       -726.5273669            0.009962            F
+
+     path length          =  3.860 bohr
+     inter-image distance =  0.386 bohr
+
+     ------------------------------ iteration   2 ------------------------------
+
+     tcpu =    731.8    self-consistency for image   1
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    736.3    self-consistency for image   2
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    761.8    self-consistency for image   3
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    780.3    self-consistency for image   4
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    806.2    self-consistency for image   5
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    842.2    self-consistency for image   6
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    867.3    self-consistency for image   7
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    896.2    self-consistency for image   8
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    937.4    self-consistency for image   9
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    972.7    self-consistency for image  10
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =    995.5    self-consistency for image  11
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+
+     activation energy (->) =   0.004614 eV
+     activation energy (<-) =   0.004612 eV
+
+     image        energy (eV)        error (eV/A)        frozen
+
+         1       -726.5273719            0.001704            F
+         2       -726.5268404            0.003665            F
+         3       -726.5255975            0.005489            F
+         4       -726.5242010            0.006729            F
+         5       -726.5231442            0.009115            F
+         6       -726.5227578            0.010731            F
+         7       -726.5231534            0.010414            F
+         8       -726.5242114            0.010561            F
+         9       -726.5256017            0.008725            F
+        10       -726.5268391            0.007828            F
+        11       -726.5273695            0.007191            F
+
+     path length          =  3.860 bohr
+     inter-image distance =  0.386 bohr
+
+     ------------------------------ iteration   3 ------------------------------
+
+     tcpu =   1000.9    self-consistency for image   1
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1006.3    self-consistency for image   2
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1048.5    self-consistency for image   3
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1068.6    self-consistency for image   4
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1097.5    self-consistency for image   5
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1135.3    self-consistency for image   6
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1159.9    self-consistency for image   7
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1198.3    self-consistency for image   8
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1228.5    self-consistency for image   9
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1306.8    self-consistency for image  10
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1324.9    self-consistency for image  11
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+
+     activation energy (->) =   0.004598 eV
+     activation energy (<-) =   0.004597 eV
+
+     image        energy (eV)        error (eV/A)        frozen
+
+         1       -726.5273719            0.001196            F
+         2       -726.5268409            0.003301            F
+         3       -726.5255991            0.004889            F
+         4       -726.5242039            0.005797            F
+         5       -726.5231480            0.008004            F
+         6       -726.5227743            0.007451            F
+         7       -726.5231577            0.009140            F
+         8       -726.5242154            0.007593            F
+         9       -726.5256049            0.006029            F
+        10       -726.5268415            0.004334            F
+        11       -726.5273714            0.003729            F
+
+     path length          =  3.860 bohr
+     inter-image distance =  0.386 bohr
+
+     ------------------------------ iteration   4 ------------------------------
+
+     tcpu =   1330.3    self-consistency for image   1
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1336.0    self-consistency for image   2
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1408.8    self-consistency for image   3
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1435.4    self-consistency for image   4
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1521.6    self-consistency for image   5
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1593.7    self-consistency for image   6
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1649.6    self-consistency for image   7
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1733.1    self-consistency for image   8
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1769.8    self-consistency for image   9
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1852.8    self-consistency for image  10
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1884.3    self-consistency for image  11
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+
+     activation energy (->) =   0.004600 eV
+     activation energy (<-) =   0.004600 eV
+
+     image        energy (eV)        error (eV/A)        frozen
+
+         1       -726.5273720            0.000991            F
+         2       -726.5268423            0.002967            F
+         3       -726.5256030            0.004312            F
+         4       -726.5242106            0.005610            F
+         5       -726.5231568            0.007467            F
+         6       -726.5227719            0.007392            F
+         7       -726.5231665            0.008039            F
+         8       -726.5242222            0.006944            F
+         9       -726.5256090            0.005169            F
+        10       -726.5268431            0.003608            F
+        11       -726.5273718            0.002940            F
+
+     path length          =  3.860 bohr
+     inter-image distance =  0.386 bohr
+
+     ------------------------------ iteration   5 ------------------------------
+
+     tcpu =   1891.0    self-consistency for image   1
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   1897.0    self-consistency for image   2
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2001.5    self-consistency for image   3
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2026.7    self-consistency for image   4
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2074.0    self-consistency for image   5
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2124.7    self-consistency for image   6
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2162.9    self-consistency for image   7
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2186.8    self-consistency for image   8
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2209.2    self-consistency for image   9
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2250.2    self-consistency for image  10
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2276.0    self-consistency for image  11
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+
+     activation energy (->) =   0.004560 eV
+     activation energy (<-) =   0.004556 eV
+
+     image        energy (eV)        error (eV/A)        frozen
+
+         1       -726.5273721            0.002087            F
+         2       -726.5268450            0.002925            F
+         3       -726.5256108            0.004153            F
+         4       -726.5242238            0.006887            F
+         5       -726.5231739            0.009515            F
+         6       -726.5228122            0.007949            F
+         7       -726.5231821            0.012224            F
+         8       -726.5242332            0.011758            F
+         9       -726.5256139            0.010577            F
+        10       -726.5268424            0.009421            F
+        11       -726.5273683            0.008905            F
+
+     path length          =  3.860 bohr
+     inter-image distance =  0.386 bohr
+
+     ------------------------------ iteration   6 ------------------------------
+
+     tcpu =   2282.2    self-consistency for image   1
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2288.5    self-consistency for image   2
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2327.1    self-consistency for image   3
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2346.5    self-consistency for image   4
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2374.4    self-consistency for image   5
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2416.2    self-consistency for image   6
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2441.2    self-consistency for image   7
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2461.9    self-consistency for image   8
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2501.6    self-consistency for image   9
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2521.2    self-consistency for image  10
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2537.1    self-consistency for image  11
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+
+     activation energy (->) =   0.004569 eV
+     activation energy (<-) =   0.004566 eV
+
+     image        energy (eV)        error (eV/A)        frozen
+
+         1       -726.5273723            0.002089            F
+         2       -726.5268467            0.002826            F
+         3       -726.5256163            0.004173            F
+         4       -726.5242331            0.006734            F
+         5       -726.5231860            0.009232            F
+         6       -726.5228029            0.010537            F
+         7       -726.5231942            0.011849            F
+         8       -726.5242428            0.011429            F
+         9       -726.5256196            0.010357            F
+        10       -726.5268444            0.009138            F
+        11       -726.5273687            0.008635            F
+
+     path length          =  3.860 bohr
+     inter-image distance =  0.386 bohr
+
+     ------------------------------ iteration   7 ------------------------------
+
+     tcpu =   2543.2    self-consistency for image   1
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2551.4    self-consistency for image   2
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2578.9    self-consistency for image   3
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2603.3    self-consistency for image   4
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2629.9    self-consistency for image   5
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2661.8    self-consistency for image   6
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2691.7    self-consistency for image   7
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2729.2    self-consistency for image   8
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2764.7    self-consistency for image   9
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2815.5    self-consistency for image  10
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2853.6    self-consistency for image  11
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+
+     activation energy (->) =   0.004505 eV
+     activation energy (<-) =   0.004504 eV
+
+     image        energy (eV)        error (eV/A)        frozen
+
+         1       -726.5273729            0.001344            F
+         2       -726.5268570            0.003119            F
+         3       -726.5256451            0.004251            F
+         4       -726.5242808            0.005219            F
+         5       -726.5232471            0.007000            F
+         6       -726.5228679            0.009606            F
+         7       -726.5232557            0.008361            F
+         8       -726.5242923            0.007776            F
+         9       -726.5256511            0.006390            F
+        10       -726.5268575            0.004967            F
+        11       -726.5273721            0.004577            F
+
+     path length          =  3.860 bohr
+     inter-image distance =  0.386 bohr
+
+     ------------------------------ iteration   8 ------------------------------
+
+     tcpu =   2862.0    self-consistency for image   1
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2870.1    self-consistency for image   2
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2907.7    self-consistency for image   3
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2939.0    self-consistency for image   4
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   2976.2    self-consistency for image   5
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3015.4    self-consistency for image   6
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3052.1    self-consistency for image   7
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3110.8    self-consistency for image   8
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3147.1    self-consistency for image   9
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3188.7    self-consistency for image  10
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3218.7    self-consistency for image  11
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+
+     activation energy (->) =   0.004418 eV
+     activation energy (<-) =   0.004417 eV
+
+     image        energy (eV)        error (eV/A)        frozen
+
+         1       -726.5273738            0.000706            F
+         2       -726.5268723            0.002830            F
+         3       -726.5256879            0.003971            F
+         4       -726.5243485            0.004187            F
+         5       -726.5233304            0.005677            F
+         6       -726.5229561            0.007326            F
+         7       -726.5233384            0.006213            F
+         8       -726.5243605            0.005505            F
+         9       -726.5256946            0.004810            F
+        10       -726.5268734            0.003963            F
+        11       -726.5273734            0.003206            F
+
+     path length          =  3.861 bohr
+     inter-image distance =  0.386 bohr
+
+     ------------------------------ iteration   9 ------------------------------
+
+     tcpu =   3228.3    self-consistency for image   1
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3236.5    self-consistency for image   2
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3284.6    self-consistency for image   3
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3313.1    self-consistency for image   4
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3350.9    self-consistency for image   5
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3392.5    self-consistency for image   6
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3423.6    self-consistency for image   7
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3477.4    self-consistency for image   8
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3517.7    self-consistency for image   9
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+     tcpu =   3560.0    self-consistency for image  10
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+     Message from routine print_cuda_info:
+     High GPU oversubscription detected. Are you sure this is what you want?
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 1402077.0 ON nid005732 CANCELLED AT 2025-08-07T16:40:45 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 1402077 ON nid005732 CANCELLED AT 2025-08-07T16:40:45 DUE TO TIME LIMIT ***

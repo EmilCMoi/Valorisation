@@ -1,0 +1,28 @@
+import numpy as np
+import matplotlib.pyplot as plt
+plt.rcParams.update({'font.size': 16})
+plt.rcParams.update({'font.family': 'sans-serif'})
+
+data=np.loadtxt("neb.int")
+data1=np.loadtxt("neb_1.int")
+data2=np.loadtxt("neb_2.int")
+data3=np.loadtxt("neb_3.int")
+
+plt.figure()
+plt.grid(True)
+plt.plot(data[:, 0], data[:, 1],'r--',label=r"$E_z=0$ V/Å")
+plt.plot(data[::25,0], data[::25,1], 'rx',markersize=10)
+plt.plot(data1[:, 0], data1[:, 1],'b--',label=rf"$E_z={8e-3*36.3609:.2}$ V/Å")
+plt.plot(data1[::25,0], data1[::25,1], 'bx',markersize=10)
+plt.plot(data2[:, 0], data2[:, 1],'g--',label=rf"$E_z={16e-3*36.3609:.2}$ V/Å")
+plt.plot(data2[::25,0], data2[::25,1], 'gx',markersize=10)
+plt.plot(data3[:, 0], data3[:, 1],'k--',label=rf"$E_z={24e-3*36.3609:.2}$ V/Å")
+plt.plot(data3[::25,0], data3[::25,1], 'kx',markersize=10)
+plt.title('NEB Energy Convergence')
+plt.xlabel('Reaction coordinate')
+plt.ylabel('Energy [eV]')
+print(len(data))
+plt.legend()
+plt.title('Quantum ESPRESSO + lelfield')
+plt.tight_layout()
+plt.show()

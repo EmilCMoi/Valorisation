@@ -1,0 +1,306 @@
+% Unofficial University of Cambridge Poster Template
+% https://github.com/andiac/gemini-cam
+% a fork of https://github.com/anishathalye/gemini
+% also refer to https://github.com/k4rtik/uchicago-poster
+
+\documentclass[final]{beamer}
+
+% ====================
+% Packages
+% ====================
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[orientation=portrait,size=a2,scale=1.15]{beamerposter}
+\usetheme{gemini}
+\usecolortheme{nott}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usepackage{anyfontsize}
+
+\def \dd {\mathrm{d}}
+
+% ====================
+% Lengths
+% ====================
+
+% If you have N columns, choose \sepwidth and \colwidth such that
+% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.025\paperwidth}
+\setlength{\colwidth}{0.45\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Title
+% ====================
+
+\title{Polarization domain walls and hysteresis in polar hexagonal boron nitride (hBN)}
+
+\author{\underline{Emiliano Cruz Aranda} \inst{1} \and Johan Félisaz \inst{1} \and Yaroslav Zhumagulov \inst{1} \and  \hspace{10mm}Ruslan Yamaletdinov \inst{1} \and Oleg V. Yazyev \inst{1}}
+
+\institute[shortinst]{\inst{1} Institute of Physics, \'{E}cole Polytechnique F\'{e}d\'{e}rale de Lausanne (EPFL), CH-1015 Lausanne, Switzerland}
+
+% ====================
+% Footer (optional)
+% ====================
+
+\footercontent{
+  % \href{https://utfpr.edu.br/ct/ppgca}{utfpr.edu.br/ct/ppgca} \hfill
+  % Mostra de Trabalhos do PPGCA --- TechTalks 2024 \hfill
+  % \href{mailto:ppgca-ct@utfpr.edu.br}{ppgca-ct@utfpr.edu.br}
+  % Acknowledgement: Jianpeng Liu and Yaroslav Zhumagulov \hfill
+  Email: emiliano.cruzaranda@epfl.ch \hfill
+  }
+
+% (can be left out to remove footer)
+
+
+% ====================
+% Logo (optional)
+% ====================
+
+% use this to include logos on the left and/or right side of the header:
+\logoleft{\includegraphics[height=2cm]{logos/EPFL_logo_white_on_transparent.png}}
+% \logoright{\includegraphics[height=2.5cm]{logos/utfpr-logo.png}}
+\logoright{
+  \begin{minipage}[t]{4.5cm}
+    \raggedright
+    \fontsize{12pt}{12pt}\selectfont
+    \tikz[baseline=-0.3ex]
+    \fill[white] (0,0) rectangle (0.5em,0.5em);
+    \hspace{0.2em}\textbf{Chair of }\\
+    \hspace{1em}\textbf{Computational}\\
+    \hspace{1em}\textbf{Condensed Matter}\\
+    \hspace{1em}\textbf{Physics}
+  \end{minipage}
+}
+
+
+
+% ====================
+% Body
+% ====================
+
+\begin{document}
+
+% Refer to https://github.com/k4rtik/uchicago-poster
+% logo: https://www.cam.ac.uk/brand-resources/about-the-logo/logo-downloads
+% \addtobeamertemplate{headline}{}
+% {
+%     \begin{tikzpicture}[remember picture,overlay]
+%       \node [anchor=north west, inner sep=3cm] at ([xshift=-2.5cm,yshift=1.75cm]current page.north west)
+%       {\includegraphics[height=7cm]{logos/unott-logo.eps}}; 
+%     \end{tikzpicture}
+% }
+
+\begin{frame}[t]
+\begin{columns}[t]
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+  \begin{block}{Introduction}
+  A model to simulate polarization switching in large sliding ferroelectric systems is proposed in this work. By supplementing the model with established molecular dynamics methods, the effect of interlayer electric potential energy differences in the motion of polarization domain walls can be observed. Following the recent experimental observation of hysteresis in bilayer hexagonal boron nitride (hBN) systems within graphene cavities, a simple mathematical model is proposed to explain this phenomenon.
+
+  \end{block}
+
+  \begin{block}{Charge exchange model}
+
+  %\begin{figure}
+  %    \centering
+  %    \includegraphics[width=0.65\linewidth]{object.pdf}
+  %    \caption{Twisted rhombohedral graphite structure and Brillouin zones of twisted rhombohedral graphite for different configurations. The yellow rings mark regions where the Zak phase $\mathcal{Z} = \pi$.}
+  %    \label{fig:trg}
+  %\end{figure}
+
+  %The chirality of rhombohedral graphite indicates the different twist stacking faults \cite{zhang-chiral-nanolett23}. In the presented twisted rhombohedral graphite, the left configuration has $C_{2x}$ symmetry, and ABC-ABC interface; while the right configuration has $C_{2y}$ symmetry, and ABC-CBA interface.
+  A simple registry-dependent atom-resolved charge exchange model is deployed in order to replicate both the polarization of different hBN stackings and the change in energies and forces on each atom due to interlayer electric potential differences.
+
+  The model is fitted to DFT data and replicates the out-of-plane dipole moment of hBN systems at different temperatures.
+  \begin{equation}
+    \Delta q_i=& \begin{cases} \sum_{\alpha_i \neq \alpha_j, l_i\neq l_j }q_{0,\alpha_j}\text{Tap}(r_{ij})e^{-r/d_{0,\alpha_j}}, \hspace{12mm}l_i=1 \\ \sum_{\alpha_i \neq \alpha_j, l_i\neq l_j }-q_{0,\alpha_j}\text{Tap}(r_{ij})e^{-r/d_{0,\alpha_j}}, \hspace{10mm}l_i=2 \end{cases}
+\end{equation}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[h!]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{/home/zanko/C3MP/valorisation/poster/model_training.pdf}
+    \caption{Model accuracy comparison}
+    \label{fig:model_training}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h!]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{/home/zanko/C3MP/valorisation/poster/model_dz.pdf}
+    \caption{Model prediction of out-of-plane dipole moment in configuration space}
+    \label{fig:model_dz}
+    \end{minipage}
+\end{figure}
+The resulting energy difference and forces from interlayer electric potential differences can be written as 
+\begin{equation}
+  \Delta E_{el}&=\sum_i V_i \Delta q_i, \hspace{10mm}
+    \Delta F_{el,j}&=-\sum_i V_i \nabla_{\vec{r}_j}\Delta q_i
+\end{equation}
+  \end{block}
+
+ \begin{alertblock}{Molecular dynamics}
+  Interlayer van der Waals interactions and intralayer covalent bonds are calculated through well established methods in LAMMPS. Specifically, the ILP potential and a Tersoff potential are deployed.
+ \end{alertblock}
+ \begin{block}{1D domain walls}
+
+ %\begin{figure}
+  %   \centering
+  %   \includegraphics[width=0.65\linewidth]{ldos.pdf}
+  %   \caption{Schematic diagram of Zak phase and LDOS of twisted rhombohedral graphite at twist angles $\theta=6.01^\circ$ and $\theta=3.15^\circ$}
+  %   \label{fig:ldos}
+ %\end{figure}
+
+ Domain walls arise from non-trivial solutions of Euler-Lagrange equations that take the intralayer elasticity and interlayer van der Waals interaction into account.
+ \begin{align}
+      E=&\int_{-\infty}^{\infty}\dd x \left[\frac{\lambda_{1D}}{2}\left( \frac{\partial \phi }{\partial x}\right)^2+V(\phi)\right], \hspace{10mm} V(\phi)\approx \frac{V_0}{a_0^4}(a_0^2-\phi^2)^2, \\
+      \phi_{DW}(x) =& \pm a_0 \tanh\left( \frac{2(x-x_0)}{w}\right), \hspace{10mm} 
+    w=\frac{a_0}{2}\sqrt{\frac{\lambda_{1D}}{V_0}}
+ \end{align}
+ There exist 4 types of 1D domain walls in bilayer hBN, they are labeled depending on the deformation direction. Their formation energies $\gamma=E[\phi_{DW}(x)]-E[\pm a_0]$ and related parameters can be calculated from molecular dynamics minimization.
+ \begin{figure}
+     \centering
+      \includegraphics[width=0.8\linewidth]{DWs.png}
+      \caption{4 different types of 1D domain walls}
+      \label{fig:evolution}
+  \end{figure}
+\begin{table}[h!]
+    \centering
+        \begin{tabular}{||c|c|c|c||}
+        \hline
+         DW type & $\gamma$ [eV/Å] & $\lambda_{1D}$ [eV/Å$^2$] & $v_c=\sqrt{\lambda_{1D}/\rho}$ [km/s] \\ \hline\hline
+        $0^{\circ}$ &$0.0763$ &$1.710$& $9.155$ \\ \hline
+        $30^{\circ}$ &$0.0880$ &$2.277$ & $10.564$ \\ \hline
+        $60^{\circ}$ & $0.1119$ & $3.682$& $13.434$ \\ \hline
+        $90^{\circ}$ &$0.1244$ &$4.550$ & $14.934$ \\\hline
+        \hline 
+        \end{tabular}
+        \caption{Properties of the different domain walls}\label{tab:dw_properties}
+\end{table}
+ % But the bandwidth evolution for the chiral limit situation and the finite doping situation is very different.
+
+ % \begin{figure}
+ %     \centering
+ %     \includegraphics[width=0.65\linewidth]{evolution.pdf}
+ %     \caption{Evolution of the bandwidth of interface states}
+ %     \label{fig:evolution}
+ % \end{figure}
+
+  \end{block}
+
+\end{column}
+
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+  \begin{block}{Domain wall annihilation and 2D domain walls}
+
+  The formation energies of the different domain walls can be calculated from molecular dynamics energy minimization. Opposing domain walls annihilate in a system where an interlayer electric potential difference is applied. The domain walls reach a maximum speed which can be calculated from the effective elastic parameter $\lambda_{1D}$ and the density of monolayer hBN. Time-dependent simulations are performed at 0 K with a Velocity-Verlet algorithm as implemented in the ASE Python library.
+
+  The formation energy of a relaxed twisted hBN bilayer can be inferred from the formation energy of the $0^{\circ}$ domain wall.
+  \begin{equation}
+    E(\theta)=\varepsilon_{AB}A(\theta)+3\gamma_{0^{\circ}}L(\theta)+E_{AA}
+  \end{equation}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[h!]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{/home/zanko/C3MP/valorisation/poster/annihilation_V.pdf}
+    \caption{Polarization switching under different potential differences}
+    \label{fig:model_training}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h!]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{/home/zanko/C3MP/valorisation/poster/linear.pdf}
+    \caption{Formation energies of twisted bilayer hBN}
+    \label{fig:model_dz}
+    \end{minipage}
+\end{figure}
+
+
+  \end{block}
+
+  \begin{block}{Mathematical argument for hysteresis}
+  Given a width function $f(x)$ for a graphene cavity, the energy of a domain wall being present along $x$ can be written as
+\begin{equation}
+    E(x)=\gamma f(x) + p_zE_z\left( \int_{x_1}^x f(s)\;\dd s - \int_{x}^{x_2}f(s)\;\dd s\right),
+\end{equation}
+where the first term is the formation energy of the domain wall and the second term is the energy due to the interaction with an electric field.
+From this simple mathematical argument, the energy barrier to switch from one side of the cavity to the other as a function of the applied electric field can be calculated.
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[h!]{0.3\textwidth}
+        \centering
+        \def\svgwidth{\textwidth}
+        \input{cavity_diag.tex}
+        %\includegraphics[width=\textwidth]{/home/zanko/PDM/figures/cavity_diag.pdf}
+        \caption{Parameters of the cavity model.}\label{fig:cavity_diag}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h!]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{cavity_dE.pdf}
+        \caption{Energy barrier in the cavity model}\label{fig:cavity_barrier}
+    \label{fig:intro_cavity}
+    \end{minipage}
+\end{figure}
+
+  \end{block}
+
+  
+  \begin{exampleblock}{Conclusions}
+
+  \begin{itemize}
+      \item A simple charge exchange model can be used to predict the polarization of sliding ferroelectric systems and simulate motion of domain walls under interlayer electric potential differences.
+      \item Different types of domain walls have different speeds of sound that can be predicted from their formation energies.
+      \item The formation energies of 1D domain walls can help predict the formation energies of 2D domain walls.
+      \item The mechanism through which graphene cavities allow for the possibility of a polarization hysteresis in bilayer hBN can be mathematically explained through the interplay of domain wall formation energies and electric field interactions. More computational simulations are needed to determine the validity of the mathematical argument.
+      
+  \end{itemize}
+
+  \end{exampleblock}
+
+ 
+
+  \begin{block}{References}
+
+    \nocite{*}
+    \footnotesize{
+    \bibliographystyle{ieeetr}
+    \bibliography{poster}
+    }
+
+  \end{block}
+
+  \begin{block}
+
+  \footnotesize{
+  This work was supported by a grant from the Swiss National Supercomputing Centre (CSCS) under project ID lp96 on Alps
+  
+  % This work is available on the arXiv: \textbf{{arXiv:1234.56789}}
+      }
+      
+  \end{block}
+
+
+\end{column}
+\separatorcolumn
+
+
+
+\end{columns}
+\end{frame}
+
+\end{document}

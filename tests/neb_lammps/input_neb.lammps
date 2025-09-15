@@ -1,0 +1,32 @@
+units metal
+atom_style full
+# boundary f f f
+boundary p p f
+newton on
+
+read_data initial.lammps
+
+mass            1 10.811  # B
+mass            2 14.0067  # N
+mass           3 12.01  # C
+
+# All interactions are defined here with proper parameters
+pair_style hybrid/overlay tersoff ilp/graphene/hbn/opt 16.0 1 coul/shield 16.0 1
+pair_coeff * * tersoff BNC.tersoff B N C
+pair_coeff * * ilp/graphene/hbn/opt BNCH.ILP B N C
+pair_coeff 1 1 coul/shield 0.70
+pair_coeff 1 3 coul/shield 0.69498201415576216335
+pair_coeff 3 3 coul/shield 0.69
+
+#timestep	0.001
+timestep	0.001
+#thermo_style one
+#thermo 100
+dump Ddump all atom 1 output.lammpstrj
+#minimize 1e-8 1e-8 10000 100000
+
+#write_restart lammps2D.restart
+min_style fire
+fix 1 all neb 1e-10# perp 0.1 end first 1.0 end last 1.0
+
+neb 0.1 0.1 100 100 1 final coords.final

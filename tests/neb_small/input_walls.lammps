@@ -1,0 +1,34 @@
+units metal
+atom_style full
+# boundary f f f
+boundary p p f
+newton on
+
+read_data tmp1D_3.lammps
+
+mass            1 10.811  # B
+mass            2 14.0067  # N
+
+
+# All interactions are defined here with proper parameters
+pair_style  hybrid/overlay extep ilp/graphene/hbn/opt 16.0 1 coul/shield 16.0
+pair_coeff  * * extep /home/zanko/mylammps/potentials/BN.extep B N
+pair_coeff  * * ilp/graphene/hbn/opt  /home/zanko/mylammps/potentials/BNCH.ILP B N
+pair_coeff  1 1 coul/shield 0.70
+pair_coeff  1 2 coul/shield 0.695
+pair_coeff  2 2 coul/shield 0.69
+
+
+timestep	0.001
+thermo_style one
+thermo 1000
+minimize 1e-14 1e-14 10000 100000
+thermo_style one
+thermo 100
+#fix Bbox all box/relax x 0.0 y 0.0 vmax 0.001
+#dump Ddump all atom 1000 output.lammpstrj
+
+#minimize 0 0 10000 100000
+
+write_restart lammps.restart
+#lmp -restart2data lammps.restart data.lammps

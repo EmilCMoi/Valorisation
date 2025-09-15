@@ -1,0 +1,11 @@
+&inputph
+    tr2_ph = 1.0d-12,
+    prefix = 'born',
+    outdir = './out_born/',
+    fildyn = 'born.dyn',
+    ldisp = .false.,
+    nq1 = 1, nq2 = 1, nq3 = 1,
+    epsil = .true.,
+    trans = .false.
+/
+0.0 0.0 0.0

@@ -1,0 +1,47 @@
+&CONTROL
+  calculation = 'vc-relax'
+  etot_conv_thr =   4.0000000000d-05
+  forc_conv_thr =   1.0000000000d-04
+  outdir = './out/'
+  prefix = 'BN_rel'
+  pseudo_dir = './pseudo/'
+  tprnfor = .true.
+  tstress = .true.
+  verbosity = 'high'
+/
+&SYSTEM
+  ecutrho =   4.8000000000d+02
+  ecutwfc =   6.0000000000d+01
+  ibrav = 0
+  nat = 4
+  nosym = .false.
+  ntyp = 2
+  occupations = 'fixed'
+  vdw_corr = 'DFT-D3'
+/
+&ELECTRONS
+  conv_thr =   8.0000000000d-10
+  electron_maxstep = 80
+  mixing_beta =   4.0000000000d-01
+/
+&IONS
+/
+&CELL
+cell_dofree = 2Dxy
+/
+ATOMIC_SPECIES
+B      10.811 b_pbesol_v1.4.uspp.F.UPF
+N      14.0067 N.pbesol-theos.UPF
+ATOMIC_POSITIONS (crystal)
+B               -0.1213776695       -0.1213776697        0.4345988811
+B                0.2880590632        0.2880590632        0.5661956084
+N                0.3791686638        0.3791686639        0.4330103862
+N                0.7874832758        0.7874832760        0.5661951243
+K_POINTS automatic
+15 15 1 0 0 0
+CELL_PARAMETERS (angstrom)
+   3.272193194  -0.375870690   0.050271804
+  -1.961610163   2.645867084   0.050271804
+   0.437429374   0.757649902  23.528938160
+
+

@@ -1,0 +1,1 @@
+lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder  "/home/zanko/C3MP/valorisation/poster/poster.tex"

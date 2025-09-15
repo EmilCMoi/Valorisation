@@ -1,0 +1,64 @@
+BEGIN
+  BEGIN_PATH_INPUT
+    &PATH
+      string_method='neb',
+      num_of_images=11,
+      opt_scheme='broyden',
+      minimum_image=.TRUE.,
+      CI_scheme='no-CI',
+      nstep_path = 150,
+      restart_mode='from_scratch',
+      first_last_opt=.TRUE.,
+    /
+  END_PATH_INPUT
+  BEGIN_ENGINE_INPUT
+&CONTROL
+  calculation = 'scf'
+  etot_conv_thr =   4.0000000000d-05
+  forc_conv_thr =   1.0000000000d-04
+  outdir = './out/'
+  prefix = 'neb'
+  pseudo_dir = './pseudo/'
+  tprnfor = .true.
+  tstress = .true.
+  verbosity = 'high'
+/
+&SYSTEM
+  ecutrho =   3.2000000000d+02
+  ecutwfc =   4.0000000000d+01
+  ibrav = 0
+  nat = 4
+  nosym = .false.
+  ntyp = 2
+  occupations = 'fixed'
+  vdw_corr = 'DFT-D3'
+/
+&ELECTRONS
+  conv_thr =   8.0000000000d-10
+  electron_maxstep = 80
+  mixing_beta =   4.0000000000d-01
+/
+ATOMIC_SPECIES
+B      10.811 b_pbesol_v1.4.uspp.F.UPF
+N      14.0067 N.pbesol-theos.UPF
+    BEGIN_POSITIONS
+      FIRST_IMAGE
+        ATOMIC_POSITIONS {crystal}
+B                0.0000000000        0.0000000000        0.4457223209
+B                0.3333333333        0.3333333333        0.5542687234
+N                0.3333333333        0.3333333333        0.4456562471
+N                0.6666666667        0.6666666667        0.5543527085
+      LAST_IMAGE
+        ATOMIC_POSITIONS {crystal}
+B                0.0000000000        0.0000000000        0.4457223209
+B                0.6666666667        0.6666666667        0.5542687234
+N                0.3333333333        0.3333333333        0.4456562471
+N                1.0000000000        1.0000000000        0.5543527085
+    END_POSITIONS
+K_POINTS automatic
+30 30 1 0 0 0
+CELL_PARAMETERS {angstrom}
+   2.501417853   0.000000000   0.000000000
+   1.250708927   2.166291403   0.000000000
+   0.000000000   0.000000000  30.000000000
+END
