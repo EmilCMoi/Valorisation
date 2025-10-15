@@ -1,0 +1,14 @@
+*.lammpstrj
+*.restart
+*.jpg
+*.gif
+*data*
+*.dat
+*.traj
+*.npy
+*.png
+*.lammps
+*.lmp
+*.txt
+*.log
+*/data/*

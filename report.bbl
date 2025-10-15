@@ -1,0 +1,1332 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{qe1}{article}{}
+      \name{author}{1}{}{%
+        {{hash=a9c0f9f1fff444c0d63ba2b580283b7e}{%
+           family={al.},
+           familyi={a\bibinitperiod},
+           given={P.\bibnamedelimi Gianozzi},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+           prefix={et},
+           prefixi={e\bibinitperiod}}}%
+      }
+      \strng{namehash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{fullhash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{bibnamehash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{authorbibnamehash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{authornamehash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{authorfullhash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{J. Phys.: Condens. Matter}
+      \field{title}{QUANTUM ESPRESSO: a modular and open-source software project for quantum simulations of materials}
+      \field{year}{2009}
+      \verb{doi}
+      \verb 10.1088/0953-8984/21/39/395502
+      \endverb
+    \endentry
+    \entry{qe2}{article}{}
+      \name{author}{1}{}{%
+        {{hash=a9c0f9f1fff444c0d63ba2b580283b7e}{%
+           family={al.},
+           familyi={a\bibinitperiod},
+           given={P.\bibnamedelimi Gianozzi},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+           prefix={et},
+           prefixi={e\bibinitperiod}}}%
+      }
+      \strng{namehash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{fullhash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{bibnamehash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{authorbibnamehash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{authornamehash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \strng{authorfullhash}{a9c0f9f1fff444c0d63ba2b580283b7e}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{J. Phys.: Condens. Matter}
+      \field{title}{Advanced capabilities for materials modelling with Quan tum ESPRESSO}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1088/1361 648X/aa8f79
+      \endverb
+    \endentry
+    \entry{vdw1}{article}{}
+      \name{author}{6}{}{%
+        {{hash=93e5c8a94cce9b911a668cfa8ad9c818}{%
+           family={Thonhauser},
+           familyi={T\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=141ad142cf61adce2372cff61d95b596}{%
+           family={Zuluaga},
+           familyi={Z\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=408d1d1a575d8cedf0c1a53c675459c1}{%
+           family={Arter},
+           familyi={A\bibinitperiod},
+           given={C.\bibnamedelimi A.},
+           giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=2e4a1dbcd176d941a1f28b4e25edfbba}{%
+           family={Berland},
+           familyi={B\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5e5ee33af5c822f773f623bd89c27b8c}{%
+           family={Schröder},
+           familyi={S\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+        {{hash=331f04695f8c8ea060689831e5622455}{%
+           family={Hyldgaard},
+           familyi={H\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{dd06da5cdc012a19b9767e6d1b226a0e}
+      \strng{fullhash}{b76304726b6726cc64713c323f574d8a}
+      \strng{bibnamehash}{dd06da5cdc012a19b9767e6d1b226a0e}
+      \strng{authorbibnamehash}{dd06da5cdc012a19b9767e6d1b226a0e}
+      \strng{authornamehash}{dd06da5cdc012a19b9767e6d1b226a0e}
+      \strng{authorfullhash}{b76304726b6726cc64713c323f574d8a}
+      \field{extraname}{1}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physical Review Letters}
+      \field{title}{Spin Signature of Nonlocal Correlation Binding in Metal-Organic Frameworks}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.115.136402
+      \endverb
+    \endentry
+    \entry{vdw2}{article}{}
+      \name{author}{6}{}{%
+        {{hash=93e5c8a94cce9b911a668cfa8ad9c818}{%
+           family={Thonhauser},
+           familyi={T\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=7f9b9f67d13bc1fd44943dc16c66de31}{%
+           family={Cooper},
+           familyi={C\bibinitperiod},
+           given={Valentino\bibnamedelima R.},
+           giveni={V\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=afdc262afafca53dd29b2814d250884c}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Shen},
+           giveni={S\bibinitperiod}}}%
+        {{hash=946c6e109158dd9e58280868355e35a6}{%
+           family={Puzder},
+           familyi={P\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod}}}%
+        {{hash=17dce213d0ce6bdb4b134c3d75ade1be}{%
+           family={Hyldgaard},
+           familyi={H\bibinitperiod},
+           given={Per},
+           giveni={P\bibinitperiod}}}%
+        {{hash=3225b0ae3c0044cb3e8990c4a4cd23ef}{%
+           family={Langreth},
+           familyi={L\bibinitperiod},
+           given={David\bibnamedelima C.},
+           giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{dd06da5cdc012a19b9767e6d1b226a0e}
+      \strng{fullhash}{1d65ee17f8cee87e9e5b8931c15a9a02}
+      \strng{bibnamehash}{dd06da5cdc012a19b9767e6d1b226a0e}
+      \strng{authorbibnamehash}{dd06da5cdc012a19b9767e6d1b226a0e}
+      \strng{authornamehash}{dd06da5cdc012a19b9767e6d1b226a0e}
+      \strng{authorfullhash}{1d65ee17f8cee87e9e5b8931c15a9a02}
+      \field{extraname}{2}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physical Review B}
+      \field{title}{Van der Waals density functional: Self-consistent potential and the nature of the van der Waals bond}
+      \field{year}{2007}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.76.125112
+      \endverb
+    \endentry
+    \entry{vdw3}{article}{}
+      \name{author}{1}{}{%
+        {{hash=8cacc07e934bb7bd2626f6da69f22568}{%
+           family={al.},
+           familyi={a\bibinitperiod},
+           given={Kristian\bibnamedelima Berland},
+           giveni={K\bibinitperiod\bibinitdelim B\bibinitperiod},
+           prefix={et},
+           prefixi={e\bibinitperiod}}}%
+      }
+      \strng{namehash}{8cacc07e934bb7bd2626f6da69f22568}
+      \strng{fullhash}{8cacc07e934bb7bd2626f6da69f22568}
+      \strng{bibnamehash}{8cacc07e934bb7bd2626f6da69f22568}
+      \strng{authorbibnamehash}{8cacc07e934bb7bd2626f6da69f22568}
+      \strng{authornamehash}{8cacc07e934bb7bd2626f6da69f22568}
+      \strng{authorfullhash}{8cacc07e934bb7bd2626f6da69f22568}
+      \field{extraname}{3}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Reports on Progress in Physics}
+      \field{title}{van der Waals forces in density functional theory: a review of the vdW-DF method}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.1088/0034-4885/78/6/066501
+      \endverb
+    \endentry
+    \entry{vdw4}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d0f3c0dc68c1393fac722c1f072425ea}{%
+           family={al.},
+           familyi={a\bibinitperiod},
+           given={D\bibnamedelima C\bibnamedelima Langreth},
+           giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim L\bibinitperiod},
+           prefix={et},
+           prefixi={e\bibinitperiod}}}%
+      }
+      \strng{namehash}{d0f3c0dc68c1393fac722c1f072425ea}
+      \strng{fullhash}{d0f3c0dc68c1393fac722c1f072425ea}
+      \strng{bibnamehash}{d0f3c0dc68c1393fac722c1f072425ea}
+      \strng{authorbibnamehash}{d0f3c0dc68c1393fac722c1f072425ea}
+      \strng{authornamehash}{d0f3c0dc68c1393fac722c1f072425ea}
+      \strng{authorfullhash}{d0f3c0dc68c1393fac722c1f072425ea}
+      \field{extraname}{4}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Physics: Condensed Matter}
+      \field{title}{A density functional for sparse matter}
+      \field{year}{2009}
+      \verb{doi}
+      \verb 10.1088/0953-8984/21/8/084203
+      \endverb
+    \endentry
+    \entry{dojo}{article}{}
+      \name{author}{7}{}{%
+        {{hash=7b4156ee329bb8256a9c3e49770f0750}{%
+           family={Setten},
+           familyi={S\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=1ee1e6f5b01e157e94b8a880d95869dc}{%
+           family={Giantomassi},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2bcf2550eb4ca69a1850eb4213baec10}{%
+           family={Bousquet},
+           familyi={B\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+        {{hash=77a585a7889c55859ab5d68246beb5df}{%
+           family={Verstraete},
+           familyi={V\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=04bbe60a9183b1f06643d3d20346ce07}{%
+           family={Hamann},
+           familyi={H\bibinitperiod},
+           given={D.\bibnamedelimi R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=5d553090bc08a6bf776c2cd40708af7b}{%
+           family={Gonze},
+           familyi={G\bibinitperiod},
+           given={X.},
+           giveni={X\bibinitperiod}}}%
+        {{hash=be18d772eb1aaba8e010fdb6270063bf}{%
+           family={Rignanese},
+           familyi={R\bibinitperiod},
+           given={G.-M.},
+           giveni={G\bibinithyphendelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{9176412bd949ff48ad11d0ad70a1a817}
+      \strng{fullhash}{20f546a406ff81a3a27829433e4cacce}
+      \strng{bibnamehash}{9176412bd949ff48ad11d0ad70a1a817}
+      \strng{authorbibnamehash}{9176412bd949ff48ad11d0ad70a1a817}
+      \strng{authornamehash}{9176412bd949ff48ad11d0ad70a1a817}
+      \strng{authorfullhash}{20f546a406ff81a3a27829433e4cacce}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Computer Physics Communications}
+      \field{number}{226}
+      \field{title}{The PseudoDojo: Training and grading a 85 element optimized norm-conserving pseudopotential table}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1016/j.cpc.2018.01.012
+      \endverb
+    \endentry
+    \entry{Wannier90}{article}{}
+      \name{author}{31}{}{%
+        {{hash=47973b2c6c1e2725285ea460cd714d35}{%
+           family={Pizzi},
+           familyi={P\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod}}}%
+        {{hash=7e965d5ad119ad3739726b083b781ea0}{%
+           family={Vitale},
+           familyi={V\bibinitperiod},
+           given={Valerio},
+           giveni={V\bibinitperiod}}}%
+        {{hash=65f88bc7e50377682ecc93d607dca9f3}{%
+           family={Arita},
+           familyi={A\bibinitperiod},
+           given={Ryotaro},
+           giveni={R\bibinitperiod}}}%
+        {{hash=a03cf6d7402f86b6cca26a9391a412fe}{%
+           family={Blügel},
+           familyi={B\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=33d9fc458f9e26a5404b355480392f0b}{%
+           family={Freimuth},
+           familyi={F\bibinitperiod},
+           given={Frank},
+           giveni={F\bibinitperiod}}}%
+        {{hash=8dd5094e5a3de6c5437e9b9ebd5caebc}{%
+           family={Géranton},
+           familyi={G\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+        {{hash=17eeb22b071f7651f7f932a2615dd4b5}{%
+           family={Gibertini},
+           familyi={G\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ff2ad16c9e32e734b8263ac243e453d0}{%
+           family={Gresch},
+           familyi={G\bibinitperiod},
+           given={Dominik},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6b505efcddfeafdfccca00b8be33d7a7}{%
+           family={Johnson},
+           familyi={J\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod}}}%
+        {{hash=f206b8b957f1a1b18d048376a83ab7a5}{%
+           family={Koretsune},
+           familyi={K\bibinitperiod},
+           given={Takashi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=373b2bed2fe9cbb4bd0cf62eaaaa0fbc}{%
+           family={Ibañez-Azpiroz},
+           familyi={I\bibinithyphendelim A\bibinitperiod},
+           given={Julen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8dc8465fbf38a98fcff41a06606304ef}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Hyungjun},
+           giveni={H\bibinitperiod}}}%
+        {{hash=d062cb66cd8a9a769b10adc7b861ce88}{%
+           family={Lihm},
+           familyi={L\bibinitperiod},
+           given={Jae-Mo},
+           giveni={J\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=ecc9a1bd71aff6bf9e7005d268d64da3}{%
+           family={Marchand},
+           familyi={M\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=48d2e894f52ad45f2fc09fb10ee42ba2}{%
+           family={Marrazzo},
+           familyi={M\bibinitperiod},
+           given={Antimo},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9ed336cb0db0414d90a3f54f2b57bd0c}{%
+           family={Mokrousov},
+           familyi={M\bibinitperiod},
+           given={Yuriy},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=261facca640b168eac7ceb7b74314502}{%
+           family={Mustafa},
+           familyi={M\bibinitperiod},
+           given={Jamal\bibnamedelima I},
+           giveni={J\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=dffa240e0e2c0e59da473fed43e3301f}{%
+           family={Nohara},
+           familyi={N\bibinitperiod},
+           given={Yoshiro},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0131987e0e4f4ce264d88580af2fb36c}{%
+           family={Nomura},
+           familyi={N\bibinitperiod},
+           given={Yusuke},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=aedc8b2082f0772ce2d152c70c04d545}{%
+           family={Paulatto},
+           familyi={P\bibinitperiod},
+           given={Lorenzo},
+           giveni={L\bibinitperiod}}}%
+        {{hash=dc1faae449227387f8ae529498b49a78}{%
+           family={Poncé},
+           familyi={P\bibinitperiod},
+           given={Samuel},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1a040bbeaaf40757db265ef06b751140}{%
+           family={Ponweiser},
+           familyi={P\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9b5f698cd3efb432c042bc799d68b113}{%
+           family={Qiao},
+           familyi={Q\bibinitperiod},
+           given={Junfeng},
+           giveni={J\bibinitperiod}}}%
+        {{hash=251f847608588d5bbbbde872052477eb}{%
+           family={Thöle},
+           familyi={T\bibinitperiod},
+           given={Florian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=7c3f74b67f487f1bbd715996c951671d}{%
+           family={Tsirkin},
+           familyi={T\bibinitperiod},
+           given={Stepan\bibnamedelima S},
+           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=99cb938870a21f90ab09a533cdd443d2}{%
+           family={Wierzbowska},
+           familyi={W\bibinitperiod},
+           given={Ma{ł}gorzata},
+           giveni={M\bibinitperiod}}}%
+        {{hash=789148b9644893e2b07e550eec09d89c}{%
+           family={Marzari},
+           familyi={M\bibinitperiod},
+           given={Nicola},
+           giveni={N\bibinitperiod}}}%
+        {{hash=6cf0349c9e37966090a18d7b10ada26c}{%
+           family={Vanderbilt},
+           familyi={V\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5995097ecc75665dbd4f30aa35f7d307}{%
+           family={Souza},
+           familyi={S\bibinitperiod},
+           given={Ivo},
+           giveni={I\bibinitperiod}}}%
+        {{hash=082ec900b9a7eeb23474b62c689e115c}{%
+           family={Mostofi},
+           familyi={M\bibinitperiod},
+           given={Arash\bibnamedelima A},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=549cf66eb3a8d0451f9d9eb7be536aea}{%
+           family={Yates},
+           familyi={Y\bibinitperiod},
+           given={Jonathan\bibnamedelima R},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {{IOP} Publishing}%
+      }
+      \strng{namehash}{e3123bb9f913ac7aa4d1f116ea7cc2c4}
+      \strng{fullhash}{f63d4a723712bde568c3ac308a2390a9}
+      \strng{bibnamehash}{e3123bb9f913ac7aa4d1f116ea7cc2c4}
+      \strng{authorbibnamehash}{e3123bb9f913ac7aa4d1f116ea7cc2c4}
+      \strng{authornamehash}{e3123bb9f913ac7aa4d1f116ea7cc2c4}
+      \strng{authorfullhash}{f63d4a723712bde568c3ac308a2390a9}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Physics: Condensed Matter}
+      \field{month}{1}
+      \field{number}{16}
+      \field{title}{Wannier90 as a community code: new features and applications}
+      \field{volume}{32}
+      \field{year}{2020}
+      \field{pages}{165902}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1088/1361-648x/ab51ff
+      \endverb
+    \endentry
+    \entry{los_extended_2017}{article}{}
+      \name{author}{6}{}{%
+        {{hash=23e607c2f7cc7bb57c6c6c4abe3fd3f3}{%
+           family={Los},
+           familyi={L\bibinitperiod},
+           given={J.\bibnamedelimi H.},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=12e7df5ec4f4fdf0eddd5e19aedce834}{%
+           family={Kroes},
+           familyi={K\bibinitperiod},
+           given={J.\bibnamedelimi M.\bibnamedelimi H.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=e8c85affa23cf83e6236006cd301981d}{%
+           family={Albe},
+           familyi={A\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=609d49c3873352ccf93e60cadae92462}{%
+           family={Gordillo},
+           familyi={G\bibinitperiod},
+           given={R.\bibnamedelimi M.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=6aa228cd0d48130d3025aad1d59b087d}{%
+           family={Katsnelson},
+           familyi={K\bibinitperiod},
+           given={M.\bibnamedelimi I.},
+           giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=04d08d4578dc608c26597f949d866590}{%
+           family={Fasolino},
+           familyi={F\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{11736ca51720767fa267a2935e18dc05}
+      \strng{fullhash}{8d3d7fcd1015edf067b3623a8246bfb4}
+      \strng{bibnamehash}{11736ca51720767fa267a2935e18dc05}
+      \strng{authorbibnamehash}{11736ca51720767fa267a2935e18dc05}
+      \strng{authornamehash}{11736ca51720767fa267a2935e18dc05}
+      \strng{authorfullhash}{8d3d7fcd1015edf067b3623a8246bfb4}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We present an extended Tersoff potential for boron nitride (BN-ExTeP) for application in large scale atomistic simulations. BN-ExTeP accurately describes the main low energy B, N, and BN structures and yields quantitatively correct trends in the bonding as a function of coordination. The proposed extension of the bond order, added to improve the dependence of bonding on the chemical environment, leads to an accurate description of point defects in hexagonal BN (ℎ-BN) and cubic BN (𝑐-BN). We have implemented this potential in the molecular dynamics LAMMPS code and used it to determine some basic properties of pristine 2D ℎ-BN and the elastic properties of defective ℎ-BN as a function of defect density at zero temperature. Our results show that there is a strong correlation between the size of the static corrugation induced by the defects and the weakening of the in-plane elastic moduli.}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{11}
+      \field{note}{Publisher: American Physical Society}
+      \field{number}{18}
+      \field{shorttitle}{Extended {Tersoff} potential for boron nitride}
+      \field{title}{Extended {Tersoff} potential for boron nitride: {Energetics} and elastic properties of pristine and defective \$h\$-{BN}}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{96}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{184108}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.96.184108
+      \endverb
+      \verb{file}
+      \verb APS Snapshot:C\:\\Users\\zanko\\Zotero\\storage\\AXAVI6FI\\PhysRevB.96.html:text/html;Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\RJVSJTA5\\Los et al. - 2017 - Extended Tersoff potential for boron nitride Energetics and elastic properties of pristine and defe.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.96.184108
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.96.184108
+      \endverb
+    \endentry
+    \entry{ouyang_controllable_2020}{article}{}
+      \name{author}{4}{}{%
+        {{hash=d23c6b0dfd1e208f2202bce8de822c30}{%
+           family={Ouyang},
+           familyi={O\bibinitperiod},
+           given={Wengen},
+           giveni={W\bibinitperiod}}}%
+        {{hash=eaf898f5b159c38e893a41fab274daa1}{%
+           family={Qin},
+           familyi={Q\bibinitperiod},
+           given={Huasong},
+           giveni={H\bibinitperiod}}}%
+        {{hash=ebfd9da7470a22cebefc0e17e1730037}{%
+           family={Urbakh},
+           familyi={U\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d998e0a938e182f4f73116eb9d47ed13}{%
+           family={Hod},
+           familyi={H\bibinitperiod},
+           given={Oded},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{a37fff1567b080cc471a697551ca41fb}
+      \strng{fullhash}{cce6bca7013da808a84a51eab825f6ac}
+      \strng{bibnamehash}{a37fff1567b080cc471a697551ca41fb}
+      \strng{authorbibnamehash}{a37fff1567b080cc471a697551ca41fb}
+      \strng{authornamehash}{a37fff1567b080cc471a697551ca41fb}
+      \strng{authorfullhash}{cce6bca7013da808a84a51eab825f6ac}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Thermal conductivity of homogeneous twisted stacks of graphite is found to strongly depend on the misfit angle. The underlying mechanism relies on the angle dependence of phonon–phonon couplings across the twisted interface. Excellent agreement between the calculated thermal conductivity of narrow graphitic stacks and corresponding experimental results indicates the validity of the predictions. This is attributed to the accuracy of interlayer interaction descriptions obtained by the dedicated registry-dependent interlayer potential used. Similar results for h-BN stacks indicate overall higher conductivity and reduced misfit angle variation. This opens the way for the design of tunable heterogeneous junctions with controllable heat-transport properties ranging from substrate-isolation to efficient heat evacuation.}
+      \field{issn}{1530-6984}
+      \field{journaltitle}{Nano Letters}
+      \field{month}{10}
+      \field{note}{Publisher: American Chemical Society}
+      \field{number}{10}
+      \field{title}{Controllable {Thermal} {Conductivity} in {Twisted} {Homogeneous} {Interfaces} of {Graphene} and {Hexagonal} {Boron} {Nitride}}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{20}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{7513\bibrangedash 7518}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1021/acs.nanolett.0c02983
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\VC8XX95W\\Ouyang et al. - 2020 - Controllable Thermal Conductivity in Twisted Homogeneous Interfaces of Graphene and Hexagonal Boron.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1021/acs.nanolett.0c02983
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1021/acs.nanolett.0c02983
+      \endverb
+    \endentry
+    \entry{ouyang_nanoserpents_2018}{article}{}
+      \name{author}{4}{}{%
+        {{hash=d23c6b0dfd1e208f2202bce8de822c30}{%
+           family={Ouyang},
+           familyi={O\bibinitperiod},
+           given={Wengen},
+           giveni={W\bibinitperiod}}}%
+        {{hash=92e71b3adfd25948301e22cf89ebb219}{%
+           family={Mandelli},
+           familyi={M\bibinitperiod},
+           given={Davide},
+           giveni={D\bibinitperiod}}}%
+        {{hash=ebfd9da7470a22cebefc0e17e1730037}{%
+           family={Urbakh},
+           familyi={U\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d998e0a938e182f4f73116eb9d47ed13}{%
+           family={Hod},
+           familyi={H\bibinitperiod},
+           given={Oded},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{a37fff1567b080cc471a697551ca41fb}
+      \strng{fullhash}{e9daaa85a1900b9a50081856f55188c3}
+      \strng{bibnamehash}{a37fff1567b080cc471a697551ca41fb}
+      \strng{authorbibnamehash}{a37fff1567b080cc471a697551ca41fb}
+      \strng{authornamehash}{a37fff1567b080cc471a697551ca41fb}
+      \strng{authorfullhash}{e9daaa85a1900b9a50081856f55188c3}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We demonstrate snake-like motion of graphene nanoribbons atop graphene and hexagonal boron nitride (h-BN) substrates using fully atomistic nonequilibrium molecular dynamics simulations. The sliding dynamics of the edge-pulled nanoribbons is found to be determined by the interplay between in-plane ribbon elasticity and interfacial lattice mismatch. This results in an unusual dependence of the friction-force on the ribbon’s length, exhibiting an initial linear rise that levels-off above a junction-dependent threshold value dictated by the pre-slip stress distribution within the slider. As part of this letter, we present the LAMMPS implementation of the registry-dependent interlayer potentials for graphene, h-BN, and their heterojunctions that were used herein, which provides enhanced performance and accuracy.}
+      \field{issn}{1530-6984}
+      \field{journaltitle}{Nano Letters}
+      \field{month}{9}
+      \field{note}{Publisher: American Chemical Society}
+      \field{number}{9}
+      \field{shorttitle}{Nanoserpents}
+      \field{title}{Nanoserpents: {Graphene} {Nanoribbon} {Motion} on {Two}-{Dimensional} {Hexagonal} {Materials}}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{18}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \field{pages}{6009\bibrangedash 6016}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1021/acs.nanolett.8b02848
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\FIECH5W3\\Ouyang et al. - 2018 - Nanoserpents Graphene Nanoribbon Motion on Two-Dimensional Hexagonal Materials.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1021/acs.nanolett.8b02848
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1021/acs.nanolett.8b02848
+      \endverb
+    \endentry
+    \entry{leven_inter-layer_2014}{article}{}
+      \name{author}{4}{}{%
+        {{hash=39df774020f2e76fedd4f8fcc0fd7304}{%
+           family={Leven},
+           familyi={L\bibinitperiod},
+           given={Itai},
+           giveni={I\bibinitperiod}}}%
+        {{hash=c13b2ca6f7706d0941785546e28186df}{%
+           family={Azuri},
+           familyi={A\bibinitperiod},
+           given={Ido},
+           giveni={I\bibinitperiod}}}%
+        {{hash=4c296b417781aedd5676d8e33824ed58}{%
+           family={Kronik},
+           familyi={K\bibinitperiod},
+           given={Leeor},
+           giveni={L\bibinitperiod}}}%
+        {{hash=d998e0a938e182f4f73116eb9d47ed13}{%
+           family={Hod},
+           familyi={H\bibinitperiod},
+           given={Oded},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{70ad6313102d717e2d0ed0bdc3b1ca11}
+      \strng{fullhash}{82abd18496172dc408d3e803afdbfcee}
+      \strng{bibnamehash}{70ad6313102d717e2d0ed0bdc3b1ca11}
+      \strng{authorbibnamehash}{70ad6313102d717e2d0ed0bdc3b1ca11}
+      \strng{authornamehash}{70ad6313102d717e2d0ed0bdc3b1ca11}
+      \strng{authorfullhash}{82abd18496172dc408d3e803afdbfcee}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A new interlayer force-field for layered hexagonal boron nitride (h-BN) based structures is presented. The force-field contains three terms representing the interlayer attraction due to dispersive interactions, repulsion due to anisotropic overlaps of electron clouds, and monopolar electrostatic interactions. With appropriate parameterization, the potential is able to simultaneously capture well the binding and lateral sliding energies of planar h-BN based dimer systems as well as the interlayer telescoping and rotation of double walled boron-nitride nanotubes of different crystallographic orientations. The new potential thus allows for the accurate and efficient modeling and simulation of large-scale h-BN based layered structures.}
+      \field{issn}{0021-9606}
+      \field{journaltitle}{The Journal of Chemical Physics}
+      \field{month}{3}
+      \field{number}{10}
+      \field{title}{Inter-layer potential for hexagonal boron nitride}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{140}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \field{pages}{104106}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1063/1.4867272
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\AXH5XJES\\Leven et al. - 2014 - Inter-layer potential for hexagonal boron nitride.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1063/1.4867272
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1063/1.4867272
+      \endverb
+    \endentry
+    \entry{leven_interlayer_2016}{article}{}
+      \name{author}{5}{}{%
+        {{hash=39df774020f2e76fedd4f8fcc0fd7304}{%
+           family={Leven},
+           familyi={L\bibinitperiod},
+           given={Itai},
+           giveni={I\bibinitperiod}}}%
+        {{hash=6e544444c2284a202c2bc6c5a07019bd}{%
+           family={Maaravi},
+           familyi={M\bibinitperiod},
+           given={Tal},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c13b2ca6f7706d0941785546e28186df}{%
+           family={Azuri},
+           familyi={A\bibinitperiod},
+           given={Ido},
+           giveni={I\bibinitperiod}}}%
+        {{hash=4c296b417781aedd5676d8e33824ed58}{%
+           family={Kronik},
+           familyi={K\bibinitperiod},
+           given={Leeor},
+           giveni={L\bibinitperiod}}}%
+        {{hash=d998e0a938e182f4f73116eb9d47ed13}{%
+           family={Hod},
+           familyi={H\bibinitperiod},
+           given={Oded},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{70ad6313102d717e2d0ed0bdc3b1ca11}
+      \strng{fullhash}{86598354db334c9694a1063c925a4189}
+      \strng{bibnamehash}{70ad6313102d717e2d0ed0bdc3b1ca11}
+      \strng{authorbibnamehash}{70ad6313102d717e2d0ed0bdc3b1ca11}
+      \strng{authornamehash}{70ad6313102d717e2d0ed0bdc3b1ca11}
+      \strng{authorfullhash}{86598354db334c9694a1063c925a4189}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We present a new force-field potential that describes the interlayer interactions in heterojunctions based on graphene and hexagonal boron nitride (h-BN). The potential consists of a long-range attractive term and a short-range anisotropic repulsive term. Its parameters are calibrated against reference binding and sliding energy profiles for a set of finite dimer systems and the periodic graphene/h-BN bilayer, obtained from density functional theory using a screened-exchange hybrid functional augmented by a many-body dispersion treatment of long-range correlation. Transferability of the parametrization is demonstrated by considering the binding energy of bulk graphene/h-BN alternating stacks. Benchmark calculations for the superlattice formed when relaxing the supported periodic heterogeneous bilayer provide good agreement with both experimental results and previous computational studies. For a free-standing bilayer we predict a highly corrugated relaxed structure. This, in turn, is expected to strongly alter the physical properties of the underlying monolayers. Our results demonstrate the potential of the developed force-field to model the structural, mechanical, tribological, and dynamic properties of layered heterostructures based on graphene and h-BN.}
+      \field{issn}{1549-9618}
+      \field{journaltitle}{Journal of Chemical Theory and Computation}
+      \field{month}{6}
+      \field{note}{Publisher: American Chemical Society}
+      \field{number}{6}
+      \field{title}{Interlayer {Potential} for {Graphene}/h-{BN} {Heterostructures}}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{12}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \field{pages}{2896\bibrangedash 2905}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1021/acs.jctc.6b00147
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\XT7IZGMZ\\Leven et al. - 2016 - Interlayer Potential for Grapheneh-BN Heterostructures.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1021/acs.jctc.6b00147
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1021/acs.jctc.6b00147
+      \endverb
+    \endentry
+    \entry{kolmogorov_registry-dependent_2005}{article}{}
+      \name{author}{2}{}{%
+        {{hash=aff448e8e91cb3bd85bd16d9bedf0ed5}{%
+           family={Kolmogorov},
+           familyi={K\bibinitperiod},
+           given={Aleksey\bibnamedelima N.},
+           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=2a8e92888147e55edf8b860018d9b1d6}{%
+           family={Crespi},
+           familyi={C\bibinitperiod},
+           given={Vincent\bibnamedelima H.},
+           giveni={V\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{7ca600bd29536a10b033377d69980ad1}
+      \strng{fullhash}{7ca600bd29536a10b033377d69980ad1}
+      \strng{bibnamehash}{7ca600bd29536a10b033377d69980ad1}
+      \strng{authorbibnamehash}{7ca600bd29536a10b033377d69980ad1}
+      \strng{authornamehash}{7ca600bd29536a10b033377d69980ad1}
+      \strng{authorfullhash}{7ca600bd29536a10b033377d69980ad1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Standard applications of density functional theory do not adequately describe the exfoliation energy of graphite. In fact, the local density approximation (LDA) and generalized gradient approximation (GGA) are in qualitative disagreement: the LDA binds at the experimental lattice constant, whereas the GGA does not. However, the variation in the energy under interlayer shifts, due predominantly to the overlap of 𝜋 orbitals (not dispersion interactions), is nearly identical in these approximations. We combine these results with experimental information on the exfoliation energy to create an improved registry-dependent classical potential for the interlayer interaction in graphitic structures.}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{6}
+      \field{note}{Publisher: American Physical Society}
+      \field{number}{23}
+      \field{title}{Registry-dependent interlayer potential for graphitic systems}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{71}
+      \field{year}{2005}
+      \field{urldateera}{ce}
+      \field{pages}{235415}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.71.235415
+      \endverb
+      \verb{file}
+      \verb APS Snapshot:C\:\\Users\\zanko\\Zotero\\storage\\4NW2YVNL\\PhysRevB.71.html:text/html;Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\JTWWEB3A\\Kolmogorov and Crespi - 2005 - Registry-dependent interlayer potential for graphitic systems.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.71.235415
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.71.235415
+      \endverb
+    \endentry
+    \entry{maaravi_interlayer_2017}{article}{}
+      \name{author}{5}{}{%
+        {{hash=6e544444c2284a202c2bc6c5a07019bd}{%
+           family={Maaravi},
+           familyi={M\bibinitperiod},
+           given={Tal},
+           giveni={T\bibinitperiod}}}%
+        {{hash=39df774020f2e76fedd4f8fcc0fd7304}{%
+           family={Leven},
+           familyi={L\bibinitperiod},
+           given={Itai},
+           giveni={I\bibinitperiod}}}%
+        {{hash=c13b2ca6f7706d0941785546e28186df}{%
+           family={Azuri},
+           familyi={A\bibinitperiod},
+           given={Ido},
+           giveni={I\bibinitperiod}}}%
+        {{hash=4c296b417781aedd5676d8e33824ed58}{%
+           family={Kronik},
+           familyi={K\bibinitperiod},
+           given={Leeor},
+           giveni={L\bibinitperiod}}}%
+        {{hash=d998e0a938e182f4f73116eb9d47ed13}{%
+           family={Hod},
+           familyi={H\bibinitperiod},
+           given={Oded},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{15c8d4b8efbfed1c646a591d3e574d9c}
+      \strng{fullhash}{19d35ec2e4318596325838f7c261e00d}
+      \strng{bibnamehash}{15c8d4b8efbfed1c646a591d3e574d9c}
+      \strng{authorbibnamehash}{15c8d4b8efbfed1c646a591d3e574d9c}
+      \strng{authornamehash}{15c8d4b8efbfed1c646a591d3e574d9c}
+      \strng{authorfullhash}{19d35ec2e4318596325838f7c261e00d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{A new parametrization of the anisotropic interlayer potential for hexagonal boron nitride (h-BN ILP) is presented. The force-field is benchmarked against density functional theory calculations of several dimer systems within the Heyd-Scuseria-Ernzerhof hybrid density functional approximation, corrected for many-body dispersion effects. The latter, more advanced method for treating dispersion, is known to produce binding energies nearly twice as small as those obtained with pairwise correction schemes, used for an earlier ILP parametrization. The new parametrization yields good agreement with the reference calculations to within ∼1 and ∼0.5 meV/atom for binding and sliding energies, respectively. For completeness, we present a complementary parameter set for homogeneous graphitic systems. Together with our previously suggested ILP parametrization for the heterogeneous graphene/h-BN junction, this provides a powerful tool for consistent simulation of the structural, mechanical, tribological, and heat transport properties of both homogeneous and heterogeneous layered structures based on graphene and h-BN.}
+      \field{issn}{1932-7447}
+      \field{journaltitle}{The Journal of Physical Chemistry C}
+      \field{month}{10}
+      \field{note}{Publisher: American Chemical Society}
+      \field{number}{41}
+      \field{shorttitle}{Interlayer {Potential} for {Homogeneous} {Graphene} and {Hexagonal} {Boron} {Nitride} {Systems}}
+      \field{title}{Interlayer {Potential} for {Homogeneous} {Graphene} and {Hexagonal} {Boron} {Nitride} {Systems}: {Reparametrization} for {Many}-{Body} {Dispersion} {Effects}}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{121}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{22826\bibrangedash 22835}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1021/acs.jpcc.7b07091
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\RUJY2SM9\\Maaravi et al. - 2017 - Interlayer Potential for Homogeneous Graphene and Hexagonal Boron Nitride Systems Reparametrization.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1021/acs.jpcc.7b07091
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1021/acs.jpcc.7b07091
+      \endverb
+    \endentry
+    \entry{naik_twister_2022}{article}{}
+      \name{author}{4}{}{%
+        {{hash=ca076d48115127ee8754bd89ef1e3e3a}{%
+           family={Naik},
+           familyi={N\bibinitperiod},
+           given={Saismit},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0fef604c9264e79e90566c967e6c2354}{%
+           family={Naik},
+           familyi={N\bibinitperiod},
+           given={Mit\bibnamedelima H.},
+           giveni={M\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=b7aea8112a8016e00df1c03e4d4a05a9}{%
+           family={Maity},
+           familyi={M\bibinitperiod},
+           given={Indrajit},
+           giveni={I\bibinitperiod}}}%
+        {{hash=4926decc31a4cbfd2ead0527fff3c8d1}{%
+           family={Jain},
+           familyi={J\bibinitperiod},
+           given={Manish},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{02a88eeb90bc3a8ffa05fe03a99dc529}
+      \strng{fullhash}{fe276ef967417b9b438a85139eda70e7}
+      \strng{bibnamehash}{02a88eeb90bc3a8ffa05fe03a99dc529}
+      \strng{authorbibnamehash}{02a88eeb90bc3a8ffa05fe03a99dc529}
+      \strng{authornamehash}{02a88eeb90bc3a8ffa05fe03a99dc529}
+      \strng{authorfullhash}{fe276ef967417b9b438a85139eda70e7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Introduction of a twist between layers of two-dimensional materials which leads to the formation of a moir{\textbackslash}'e pattern is an emerging pathway to tune the electronic, vibrational and optical properties. The fascinating properties of these systems is often linked to large-scale structural reconstruction of the moir{\textbackslash}'e pattern. Hence, an essential first step in the theoretical study of these systems is the construction and structural relaxation of the atoms in the moir{\textbackslash}'e superlattice. We present the Twister package, a collection of tools that constructs commensurate superlattices for any combination of 2D materials and also helps perform structural relaxations of the moir{\textbackslash}'e superlattice. Twister constructs commensurate moir{\textbackslash}'e superlattices using the coincidence lattice method and provides an interface to perform structural relaxations using classical forcefields.}
+      \field{issn}{00104655}
+      \field{journaltitle}{Computer Physics Communications}
+      \field{month}{2}
+      \field{note}{arXiv:2102.07884 [cond-mat]}
+      \field{shorttitle}{Twister}
+      \field{title}{Twister: {Construction} and structural relaxation of commensurate moiré superlattices}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{271}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{108184}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.cpc.2021.108184
+      \endverb
+      \verb{file}
+      \verb Preprint PDF:C\:\\Users\\zanko\\Zotero\\storage\\GLA9HMI8\\Naik et al. - 2022 - Twister Construction and structural relaxation of commensurate moiré superlattices.pdf:application/pdf;Snapshot:C\:\\Users\\zanko\\Zotero\\storage\\W5LA58XJ\\2102.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2102.07884
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2102.07884
+      \endverb
+      \keyw{Condensed Matter - Materials Science}
+    \endentry
+    \entry{naik_ultraflatbands_2018}{article}{}
+      \name{author}{2}{}{%
+        {{hash=0fef604c9264e79e90566c967e6c2354}{%
+           family={Naik},
+           familyi={N\bibinitperiod},
+           given={Mit\bibnamedelima H.},
+           giveni={M\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=4926decc31a4cbfd2ead0527fff3c8d1}{%
+           family={Jain},
+           familyi={J\bibinitperiod},
+           given={Manish},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{b15cafdf31576cf9d19ffb64cb7a5291}
+      \strng{fullhash}{b15cafdf31576cf9d19ffb64cb7a5291}
+      \strng{bibnamehash}{b15cafdf31576cf9d19ffb64cb7a5291}
+      \strng{authorbibnamehash}{b15cafdf31576cf9d19ffb64cb7a5291}
+      \strng{authornamehash}{b15cafdf31576cf9d19ffb64cb7a5291}
+      \strng{authorfullhash}{b15cafdf31576cf9d19ffb64cb7a5291}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Ultraflatbands in twisted bilayers of two-dimensional materials have the potential to host strong correlations, including the Mott-insulating phase at half-filling of the band. Using first-principles density functional theory calculations, we show the emergence of ultraflatbands at the valence band edge in twisted bilayer MoS2, a prototypical transition metal dichalcogenide. The computed band widths, 5 and 23 meV for 56.5° and 3.5° twist angles, respectively, are comparable to that of twisted bilayer graphene near “magic” angles. Large structural transformations in the moiré patterns lead to formation of shear solitons at stacking boundaries and strongly influence the electronic structure. We extend our analysis for twisted bilayer MoS2 to show that flatbands can occur at the valence band edge of twisted bilayer WS2, MoSe2, and WSe2 as well.}
+      \field{journaltitle}{Physical Review Letters}
+      \field{month}{12}
+      \field{note}{Publisher: American Physical Society}
+      \field{number}{26}
+      \field{title}{Ultraflatbands and {Shear} {Solitons} in {Moir}{\textbackslash}'e {Patterns} of {Twisted} {Bilayer} {Transition} {Metal} {Dichalcogenides}}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{121}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \field{pages}{266401}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.121.266401
+      \endverb
+      \verb{file}
+      \verb APS Snapshot:C\:\\Users\\zanko\\Zotero\\storage\\BR6V5XWE\\PhysRevLett.121.html:text/html;Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\IKJKANYQ\\Naik and Jain - 2018 - Ultraflatbands and Shear Solitons in Moir'e Patterns of Twisted Bilayer Transition Metal Dichalcoge.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.121.266401
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.121.266401
+      \endverb
+    \endentry
+    \entry{lin_effective_2019}{article}{}
+      \name{author}{2}{}{%
+        {{hash=4e6d7945739e349a2cc3d0e48e861b57}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Xianqing},
+           giveni={X\bibinitperiod}}}%
+        {{hash=4eb24f396045bea2b2f2f98d983cca45}{%
+           family={Ni},
+           familyi={N\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{3278a3461c77e92359cd97c6c1afe257}
+      \strng{fullhash}{3278a3461c77e92359cd97c6c1afe257}
+      \strng{bibnamehash}{3278a3461c77e92359cd97c6c1afe257}
+      \strng{authorbibnamehash}{3278a3461c77e92359cd97c6c1afe257}
+      \strng{authornamehash}{3278a3461c77e92359cd97c6c1afe257}
+      \strng{authorfullhash}{3278a3461c77e92359cd97c6c1afe257}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We propose an effective lattice model of graphene moiré superlattices on hexagonal boron nitride (MLG/BN) based on ab initio calculations to study the evolution of electronic properties of relaxed MLG/BN superlattices with relative twist angle (𝜃). The parameters for obtaining hopping terms and on-site energies in the lattice Hamiltonian are directly extracted from the ab initio electronic structure of shifted commensurate bilayers. The effect of the in-plane strain induced by the structural relaxation can be taken into account straightforwardly for the lattice model. We consider completely free MLG/BN heterostructures and those with constant interlayer distances. We find that the structural distortion due to the relaxation exhibits similar magnitude for 𝜃 smaller than about 0.5∘. The gap at the primary Dirac points (Δ𝑃) is maintained for 𝜃{<}0.5∘, while the gap at the secondary Dirac points (Δ𝑆) decreases rapidly with small 𝜃, and such distinct behavior of Δ𝑃 and Δ𝑆 is roughly consistent with recent experimental observations. In addition, decreasing interlayer distance can significantly enhance Δ𝑃. This lattice model is sufficiently transparent and flexible to be employed to investigate various configurations of MLG/BN moiré superlattices.}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{11}
+      \field{note}{Publisher: American Physical Society}
+      \field{number}{19}
+      \field{title}{Effective lattice model of graphene moir{\textbackslash}'e superlattices on hexagonal boron nitride}
+      \field{urlday}{6}
+      \field{urlmonth}{12}
+      \field{urlyear}{2024}
+      \field{volume}{100}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \field{pages}{195413}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.100.195413
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\KRXHNU8F\\Lin and Ni - 2019 - Effective lattice model of graphene moir'e superlattices on hexagonal boron nitride.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.100.195413
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.100.195413
+      \endverb
+    \endentry
+    \entry{nam_lattice_2017}{article}{}
+      \name{author}{2}{}{%
+        {{hash=ecbe6013be9922444241d80b7ae06e18}{%
+           family={Nam},
+           familyi={N\bibinitperiod},
+           given={Nguyen\bibnamedelimb N.\bibnamedelimi T.},
+           giveni={N\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=d2bc3c81be05f50501d15a5724499b76}{%
+           family={Koshino},
+           familyi={K\bibinitperiod},
+           given={Mikito},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{43d11d0b2b5199e00b0bf7726af8d6d5}
+      \strng{fullhash}{43d11d0b2b5199e00b0bf7726af8d6d5}
+      \strng{bibnamehash}{43d11d0b2b5199e00b0bf7726af8d6d5}
+      \strng{authorbibnamehash}{43d11d0b2b5199e00b0bf7726af8d6d5}
+      \strng{authornamehash}{43d11d0b2b5199e00b0bf7726af8d6d5}
+      \strng{authorfullhash}{43d11d0b2b5199e00b0bf7726af8d6d5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2469-9950, 2469-9969}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{8}
+      \field{number}{7}
+      \field{title}{Lattice relaxation and energy band modulation in twisted bilayer graphene}
+      \field{urlday}{12}
+      \field{urlmonth}{12}
+      \field{urlyear}{2024}
+      \field{volume}{96}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{075311}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.96.075311
+      \endverb
+      \verb{file}
+      \verb Submitted Version:C\:\\Users\\zanko\\Zotero\\storage\\GEXIFP7I\\Nam and Koshino - 2017 - Lattice relaxation and energy band modulation in twisted bilayer graphene.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.96.075311
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.96.075311
+      \endverb
+    \endentry
+    \entry{lin_pressure-induced_2020}{article}{}
+      \name{author}{3}{}{%
+        {{hash=4e6d7945739e349a2cc3d0e48e861b57}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Xianqing},
+           giveni={X\bibinitperiod}}}%
+        {{hash=f2114519e766ae0b9dfaed0a4d3b32c4}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Haotian},
+           giveni={H\bibinitperiod}}}%
+        {{hash=4eb24f396045bea2b2f2f98d983cca45}{%
+           family={Ni},
+           familyi={N\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{9ce0f7d5845a91de149cac625504304f}
+      \strng{fullhash}{9ce0f7d5845a91de149cac625504304f}
+      \strng{bibnamehash}{9ce0f7d5845a91de149cac625504304f}
+      \strng{authorbibnamehash}{9ce0f7d5845a91de149cac625504304f}
+      \strng{authornamehash}{9ce0f7d5845a91de149cac625504304f}
+      \strng{authorfullhash}{9ce0f7d5845a91de149cac625504304f}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2469-9950, 2469-9969}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{4}
+      \field{number}{15}
+      \field{title}{Pressure-induced gap modulation and topological transitions in twisted bilayer and twisted double bilayer graphene}
+      \field{urlday}{12}
+      \field{urlmonth}{12}
+      \field{urlyear}{2024}
+      \field{volume}{101}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{155405}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.101.155405
+      \endverb
+      \verb{file}
+      \verb Submitted Version:C\:\\Users\\zanko\\Zotero\\storage\\RWTIY8R2\\Lin et al. - 2020 - Pressure-induced gap modulation and topological transitions in twisted bilayer and twisted double bi.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.101.155405
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.101.155405
+      \endverb
+    \endentry
+    \entry{he_ultrafast_2024}{article}{}
+      \name{author}{7}{}{%
+        {{hash=c087b38b6421f45146a8ac2129314589}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Ri},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1d9f31250005c345109188ab62c30938}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Bingwen},
+           giveni={B\bibinitperiod}}}%
+        {{hash=ecfd4ce17fbe6ed4912699e1ff0317f7}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Hua},
+           giveni={H\bibinitperiod}}}%
+        {{hash=ad7517ebe80619f75e6261e4aae4f0e1}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+        {{hash=692dd8dee24c21a0cb6e01871e405e85}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Ping},
+           giveni={P\bibinitperiod}}}%
+        {{hash=5e3f53eb2856b4630d4b8eafa6a712c1}{%
+           family={Bauer},
+           familyi={B\bibinitperiod},
+           given={Gerrit},
+           giveni={G\bibinitperiod}}}%
+        {{hash=49f541a55d2a6ad37cef20b484b7b046}{%
+           family={Zhong},
+           familyi={Z\bibinitperiod},
+           given={Zhicheng},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{a409f8589473989c2b9281403c387162}
+      \strng{fullhash}{674c4b3eb9e0936d868d64e5a66aaf6c}
+      \strng{bibnamehash}{a409f8589473989c2b9281403c387162}
+      \strng{authorbibnamehash}{a409f8589473989c2b9281403c387162}
+      \strng{authornamehash}{a409f8589473989c2b9281403c387162}
+      \strng{authorfullhash}{674c4b3eb9e0936d868d64e5a66aaf6c}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Recent research has highlighted the potential of ferroelectricity in van der Waals bilayers in providing an unconventional route for improving device performance. Understanding the static and dynamic properties of domain wall (DW) is critical unlocking this potential, as key parameters such as switching field and speed heavily rely on them. In this article, we conduct a theoretical exploration of the fundamental properties of textures in stacking-engineered ferroelectrics using a machine-learning potential model. Our results demonstrate that competition between the switching barrier of stable ferroelectric states and in-plane lattice distortion leads to a DW width of ten nanometers. We also demonstrate that DW motion can drastically reduce the critical ferroelectric switching field of a monodomain by two orders of magnitude and enable domain switching on a picosecond timescale, suggesting the potential for ultrafast and energy-saving non-volatile memory devices. Moreover, twisting the bilayer into a stacking Moiré structure results in a super-paraelectric state, because the ferroelectric order is reversibly broken by DW motion already at ultralow electric fields. These findings offer valuable insights into the behavior and properties of stacking-engineered ferroelectrics, with significant implications for the development of next-generation electronic devices.}
+      \field{issn}{1359-6454}
+      \field{journaltitle}{Acta Materialia}
+      \field{month}{1}
+      \field{title}{Ultrafast switching dynamics of the ferroelectric order in stacking-engineered ferroelectrics}
+      \field{urlday}{24}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{262}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \field{pages}{119416}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.actamat.2023.119416
+      \endverb
+      \verb{file}
+      \verb ScienceDirect Snapshot:C\:\\Users\\zanko\\Zotero\\storage\\PJ4TK9NV\\S1359645423007462.html:text/html;Submitted Version:C\:\\Users\\zanko\\Zotero\\storage\\PQEKMTFJ\\He et al. - 2024 - Ultrafast switching dynamics of the ferroelectric order in stacking-engineered ferroelectrics.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1359645423007462
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1359645423007462
+      \endverb
+      \keyw{Density functional theory,Domain wall,Machine-learning potential,Moiré structure,Stacking-engineered ferroelectrics}
+    \endentry
+    \entry{yasuda_stacking-engineered_2021}{article}{}
+      \name{author}{5}{}{%
+        {{hash=06b5b1f4903e9a1f49a578a0cce5a35e}{%
+           family={Yasuda},
+           familyi={Y\bibinitperiod},
+           given={Kenji},
+           giveni={K\bibinitperiod}}}%
+        {{hash=2588e72d0af5d9590ee7321ef680f7ea}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xirui},
+           giveni={X\bibinitperiod}}}%
+        {{hash=ec13cda2cbfddcda8775a94455efdce0}{%
+           family={Watanabe},
+           familyi={W\bibinitperiod},
+           given={Kenji},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5a856342313a0ed8d5c7c0315c53a88f}{%
+           family={Taniguchi},
+           familyi={T\bibinitperiod},
+           given={Takashi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=104adca655c0c282c6fcedc11db38805}{%
+           family={Jarillo-Herrero},
+           familyi={J\bibinithyphendelim H\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{065312dba50e761092073445f7930010}
+      \strng{fullhash}{bcdb63ecd9957e8e4f319563b63cc41f}
+      \strng{bibnamehash}{065312dba50e761092073445f7930010}
+      \strng{authorbibnamehash}{065312dba50e761092073445f7930010}
+      \strng{authornamehash}{065312dba50e761092073445f7930010}
+      \strng{authorfullhash}{bcdb63ecd9957e8e4f319563b63cc41f}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Two-dimensional (2D) ferroelectrics with robust polarization down to atomic thicknesses provide building blocks for functional heterostructures. Experimental realization remains challenging because of the requirement of a layered polar crystal. Here, we demonstrate a rational design approach to engineering 2D ferroelectrics from a nonferroelectric parent compound by using van der Waals assembly. Parallel-stacked bilayer boron nitride exhibits out-of-plane electric polarization that reverses depending on the stacking order. The polarization switching is probed through the resistance of an adjacently stacked graphene sheet. Twisting the boron nitride sheets by a small angle changes the dynamics of switching because of the formation of moiré ferroelectricity with staggered polarization. The ferroelectricity persists to room temperature while keeping the high mobility of graphene, paving the way for potential ultrathin nonvolatile memory applications.}
+      \field{journaltitle}{Science}
+      \field{month}{6}
+      \field{note}{Publisher: American Association for the Advancement of Science}
+      \field{number}{6549}
+      \field{title}{Stacking-engineered ferroelectricity in bilayer boron nitride}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{volume}{372}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{1458\bibrangedash 1462}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1126/science.abd3230
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\zanko\\Zotero\\storage\\F9SVFQJ9\\Yasuda et al. - 2021 - Stacking-engineered ferroelectricity in bilayer boron nitride.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.science.org/doi/10.1126/science.abd3230
+      \endverb
+      \verb{url}
+      \verb https://www.science.org/doi/10.1126/science.abd3230
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

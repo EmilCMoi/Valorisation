@@ -167,15 +167,15 @@ def create_structure(r):
     v2 = a*np.array([-1/2,np.sqrt(3)/2,0])
     
     # Adjusting for the convention of ibrav=4:
-    #tmp=r[0]
-    #r[0]=r[1]
-    #r[1]=-tmp
+    tmp=r[0]
+    r[0]=r[1]
+    r[1]=-tmp
     # Create positions based on the input r
     positions = np.zeros((4, 3))
     positions[0] = np.array([0, 0, 0])
     positions[1] = np.array([0, 0, 0]) + v1 / 3 - v2 / 3
-    positions[2] = np.array([0, 0, c]) + r#r[0]  + r[1]  + r[2]
-    positions[3] = np.array([0, 0, c]) + v1 / 3 - v2 / 3 +r# r[0]  + r[1] + r[2]
+    positions[2] = np.array([0, 0, c]) + r[0] * v1 + r[1] * v2 + r[2]
+    positions[3] = np.array([0, 0, c]) + v1 / 3 - v2 / 3 + r[0] * v1 + r[1] * v2 + r[2]
     
     labels = ["B", "N", "B", "N"]
     struct=Atoms(symbols=labels, positions=positions,cell=[v1, v2, [0, 0, 30]])
@@ -185,7 +185,33 @@ def create_structure(r):
     struct.wrap()
     struct.pbc=[True,True,False]
     return struct
-
+def create_structure_test(r):
+    a = 2.511
+    c = 6.6612 / 2
+    v1 = a*np.array([1,0,0])
+    v2 = a*np.array([-1/2,np.sqrt(3)/2,0])
+    
+    # Adjusting for the convention of ibrav=4:
+    #tmp=r[0]
+    #r[0]=r[1]
+    #r[1]=-tmp
+    # Create positions based on the input r
+    positions = np.zeros((4, 3))
+    positions[0] = np.array([0, 0, 0])
+    positions[1] = np.array([0, 0, 0]) + v1 / 3 - v2 / 3
+    positions[2] = np.array([0, 0, c]) + r#r[0]  + r[1]  + r[2]
+    positions[3] = np.array([0, 0, c]) + v1 / 3 - v2 / 3 + r#r[0]  + r[1] + r[2]
+    #print(c)
+    #print(r[2])
+    labels = ["B", "N", "B", "N"]
+    struct=Atoms(symbols=labels, positions=positions,cell=[v1, v2, [0, 0, 30]])
+    struct.set_array("mol-id", [1, 1, 2, 2],dtype=int)  # Assigning molecule IDs
+    struct.wrap()
+    struct.center()
+    struct.wrap()
+    struct.pbc=[True,True,True]
+    return struct
+'''
 # Reading data
 rs=np.load("borns.npz")['rs']
 borns=np.load("borns.npz")['borns']
@@ -198,8 +224,8 @@ for i in range(len(rs)):
     struct=create_structure(np.concatenate((rs[i],[0])))
     structs.append(struct)
     borns_good=np.concatenate((borns_good, np.ravel(borns[i])))
-
-def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
+'''
+def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo,k):
     """
     Calculate registry-dependent BECs and charges for a given structure.
     """
@@ -208,22 +234,19 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
     na=len(atoms)
     charges=np.zeros(na)
     born=np.zeros((na, 3, 3))
-
-    born_params={"B":{"N":{ 'q0_pz':q0_pz,'d_pz':d_pz}, 'Zi':Zi,'Zo':Zo} ,"N":{"B":{},'Zi':-Zi,'Zo':-Zo}}
+    
+    born_params={"B":{"N":{ 'q0_pz':q0_pz,'d_pz':d_pz,'k':k}, 'Zi':Zi,'Zo':Zo} ,"N":{"B":{},'Zi':-Zi,'Zo':-Zo}}
     born_paramss=copy.deepcopy(born_params)
-    #born_paramss["N"]["B"]["q0_sp"]=-q0_sp
     born_paramss["N"]["B"]["q0_pz"]=-q0_pz
-    #born_paramss["N"]["B"]["r0_sp"]=r0_sp
-    #born_paramss["N"]["B"]["r0_pz"]=r0_pz
-    #born_paramss["N"]["B"]["d_sp"]=d_sp
     born_paramss["N"]["B"]["d_pz"]=d_pz
+    born_paramss["N"]["B"]["k"]=k
     pos=atoms.get_positions()
     cell=atoms.get_cell()
     rcut=8.0
     # Setting up neighbor list
     nlborn=NeighborList(cutoffs=np.zeros(na)+rcut/2,bothways=True,primitive=PrimitiveNeighborList)
     nlborn.update(atoms)
-
+    #print(atoms.pbc)
     #neighs_dists, neighs_indices = KDnn(atoms)
     #normals=KDnormals(atoms)
     
@@ -232,6 +255,7 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
 
         # Interlayer contributions
         if atoms.get_array("mol-id")[i] == 1:
+            
             indices, offsets = nlborn.get_neighbors(i)
             for j, offset in zip(indices, offsets):
                 # Interlayer contributions
@@ -242,28 +266,13 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
                     Tap=20*(r_ij/rcut)**7 - 70*(r_ij/rcut)**6 + 84*(r_ij/rcut)**5 - 35*(r_ij/rcut)**4+1
                     
                     q0=born_paramss[atoms.symbols[i]][atoms.symbols[j]]["q0_pz"]
-                    r0=0#born_paramss[atoms.symbols[i]][atoms.symbols[j]]["r0_pz"]
+                    
                     d0=born_paramss[atoms.symbols[i]][atoms.symbols[j]]["d_pz"]
-
-                    #rho_ij=r_ij**2-np.dot(r, normals[i])**2
-                    #rho_ji= r_ij**2-np.dot(r, normals[j])**2
-                    '''
-                    z_ij=np.dot(r, normals[i])
-                    z_ji=np.dot(r, normals[j])
-                    if z_ij<0:
-                        z_ij*=-1
-                    if z_ji<0:
-                        z_ji*=-1
+                    k=born_paramss[atoms.symbols[i]][atoms.symbols[j]]["k"]
                     
-                    z=(z_ij+z_ji)/2
-                    '''
-                    #rll=(rho_ij+rho_ji)/2
-
-                    #charges[i]+=Tap*p0*np.exp(-lambd*(r_ij-z0))*np.exp(-k*rll)/r_ij
-                    #charges[j]-=Tap*p0*np.exp(-lambd*(r_ij-z0))*np.exp(-k*rll)/r_ij
                     
-                    charges[i]+=Tap*q0*np.exp(-d0*(r_ij-r0))
-                    charges[j]-=Tap*q0*np.exp(-d0*(r_ij-r0))
+                    charges[i]+=Tap*q0*np.exp(-d0*(r_ij))*np.exp(-k*(r_ij)**2)/r_ij
+                    charges[j]-=Tap*q0*np.exp(-d0*(r_ij))*np.exp(-k*(r_ij)**2)/r_ij
         # Intralayer contributions
         '''
         if atoms.symbols[i]=="B":
@@ -281,6 +290,7 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
                     charges[j]-=Tap*q0*np.exp(-d0*(r_ij-r0))
         '''
 
+
     # The following should adhere to the mathematical expression in my thesis (eq. 36) by explicitly inserting eq. 23
 
     for kappa in range(na):
@@ -291,8 +301,11 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
                 for lambd in range(na):
                     sum_sigma=0
                     sigmas, offsets = nlborn.get_neighbors(lambd)
+                    count=0
                     for sigma,offset in zip(sigmas, offsets):
                         if (atoms.symbols[sigma]!=atoms.symbols[lambd]) and (atoms.get_array("mol-id")[sigma]!=atoms.get_array("mol-id")[lambd]) and (lambd==kappa or sigma==kappa):
+                            #print(kappa, lambd, sigma)
+                            count+=1
                             r_lambda_sigma=np.linalg.norm(pos[sigma]-pos[lambd]+offset@cell)#-offlambd@cell)
                             
                             Tap=20*(r_lambda_sigma/rcut)**7 - 70*(r_lambda_sigma/rcut)**6 + 84*(r_lambda_sigma/rcut)**5 - 35*(r_lambda_sigma/rcut)**4+1
@@ -302,9 +315,13 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
                             
                             q0=born_paramss[atoms.symbols[lambd]][atoms.symbols[sigma]]["q0_pz"]
                             d0=born_paramss[atoms.symbols[lambd]][atoms.symbols[sigma]]["d_pz"]
-                            r0=0#born_paramss[atoms.symbols[lambd]][atoms.symbols[sigma]]["r0_pz"]
-                            #np.power(-1,kappa==sigma)*
-                            sum_sigma+=np.power(-1,kappa==sigma)*q0*(dTap*np.exp(-(r_lambda_sigma-r0)*d0)-Tap*np.exp(-(r_lambda_sigma-r0)*d0)*d0)*(pos[sigma]-pos[lambd]+offset@cell)[j]/ r_lambda_sigma
+                            k=born_paramss[atoms.symbols[lambd]][atoms.symbols[sigma]]["k"]
+                            sum_sigma+=np.power(-1,kappa==sigma)*q0*( \
+                                dTap*np.exp(-(r_lambda_sigma)*d0)*np.exp(-k*(r_lambda_sigma)**2)/r_lambda_sigma \
+                                -Tap*np.exp(-(r_lambda_sigma)*d0)*d0*np.exp(-k*(r_lambda_sigma)**2)/r_lambda_sigma \
+                                -Tap*np.exp(-(r_lambda_sigma)*d0)*np.exp(-k*(r_lambda_sigma)**2)*2*k \
+                                -Tap*np.exp(-(r_lambda_sigma)*d0)*np.exp(-k*(r_lambda_sigma)**2)/r_lambda_sigma**2 \
+                                    )*(pos[sigma]-pos[lambd]+offset@cell)[j]/ r_lambda_sigma
                         '''
                         elif (atoms.symbols[sigma]!=atoms.symbols[lambd]) and (atoms.get_array("mol-id")[sigma]==atoms.get_array("mol-id")[lambd]) and (lambd==kappa or sigma==kappa):
                             assert int(lambd==kappa)+int(sigma==kappa)<2
@@ -316,35 +333,40 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
                             d0=born_paramss[atoms.symbols[lambd]][atoms.symbols[sigma]]["d_sp"]
                             r0=0#born_paramss[atoms.symbols[lambd]][atoms.symbols[sigma]]["r0_sp"]
                             #np.power(-1,kappa==sigma)*
-                            sum_sigma+=np.power(-1,kappa==sigma)*q0*(dTap*np.exp(-(r_lambda_sigma-r0)*d0)-Tap*np.exp(-(r_lambda_sigma-r0)*d0)*d0)*(pos[sigma]-pos[lambd]+offset@cell)[j]/ r_lambda_sigma
+                            sum_sigma+=q0*(dTap*np.exp(-(r_lambda_sigma-r0)*d0)-Tap*np.exp(-(r_lambda_sigma-r0)*d0)*d0)*(pos[sigma,j]-pos[lambd,j]+offset@cell[j])/ r_lambda_sigma
                         '''
-                    sum_lambda+=sum_sigma*(pos[lambd,i])#+offlambd@cell[i])
                     
+                    sum_lambda+=sum_sigma*(pos[lambd,i])#+offlambd@cell[i])
+                    #print(count)  
                 
                 
                 born[kappa,i,j]=sum_lambda
     
     # Add partial charges to the diagonal elements
     for i in range(na):
+        for j in range(3):
+            born[i,j,j]+=charges[i]
         for j in range(2):
-            born[i,j,j]+=born_paramss[atoms.symbols[i]]["Zi"]+charges[i]#charges[i]
-        born[i,2,2]+=born_paramss[atoms.symbols[i]]["Zo"]+charges[i]#charges[i]
+            born[i,j,j]+=born_params[atoms.symbols[i]]['Zi']
+        born[i,2,2]+=born_params[atoms.symbols[i]]['Zo']
 
     # Verify acoustic sum rules
+
     asr=np.zeros((3,3))
     for i in range(3):
         for j in range(3):
             asr[i,j]=np.sum(born[:,i,j])
             #born[:,i,j]-=asr[i,j]/na
-    #print("Acoustic sum rule: ", np.linalg.norm(asr))
+    #print("Acoustic sum rule: ", asr)
     #print("Charges: ", charges, np.sum(charges))
-    return born#[:,2]
+    return born
 #7.256338653090905 [-4.153344000000001, 3.0747330960854087, -4.153344000000001, 2.1352313167259784]
+'''''
 dummyy=range(len(borns_good))
 print(len(dummyy))
 print(len(borns_good))
 print(len(structs))
-def fit(dummy,q0_pz,d_pz,Zi,Zo):
+def fit(dummy,q0_sp,d_sp,q0_pz,d_pz,Z):
     """
     Fit function for curve fitting.
     We trick scipy into thinking the first argument does anything
@@ -353,9 +375,9 @@ def fit(dummy,q0_pz,d_pz,Zi,Zo):
     for struct in structs:
         struct.wrap()
         #born = np.ravel(born_parametrized(struct, d0,a,b)[::2,2,:2])
-        born = np.ravel(born_parametrized(struct,q0_pz,d_pz,Zi,Zo))
+        born = np.ravel(born_parametrized(struct,q0_sp,d_sp,q0_pz,d_pz,Z))
         born_out=np.concatenate((born_out,born))
-        x= (q0_pz,d_pz,Zi,Zo)
+        x= (q0_sp,d_sp,q0_pz,d_pz,Z)
     eps=1e-4
     print(np.sum(np.log(eps+np.abs(born_out-borns_good))-np.log(eps))/len(borns_good), x)
     return born_out
@@ -371,37 +393,54 @@ def to_min(x):
     eps=1e-4
     print(np.sum(np.log(eps+np.abs(born_out-borns_good))-np.log(eps))/len(borns_good), x)
     return np.sum(np.log(eps+np.abs(born_out-borns_good))-np.log(eps))/len(borns_good)
+'''
 
+N=13
+rs=np.zeros((N*N,3))
+for i in range(N):
+    for j in range(N):
+        rs[i*N+j] = [i/(N-1),j/(N-1),0]
+a=2.511
+A=np.array([a*np.array([1,0]),a*np.array([-1/2,np.sqrt(3)/2])]).T
+
+'''
+from ase.visualize import view
+rs=np.load("borns.npz")['rs']
+'''
 def plot_guess(results):
     """
     Plot the guesses for the fit function.
     """
-    syms="BNBN"
-    mols=[1,1,2,2]
     
     bornss_calc=np.zeros((len(rs), 4, 3, 3))
-    for i, struct in enumerate(structs):
-        struct.wrap()
-        #print(struct.pbc)
+    for i in trange(len(rs)):
+        #struct=create_structure_test(np.concatenate((rs[i],np.array([0]))))
+        struct=create_structure(rs[i])
+        #struct.wrap()
+        #view(struct)
+        #print(np.abs(struct.get_positions()[2][2]-struct.get_positions()[1][2]))
         born =born_parametrized(struct,*results)
         bornss_calc[i] = born
-
+        rs[i,:2]=A.dot(rs[i,:2])
     for i in range(4):
         plt.figure()
-        b=bornss_calc[:,i,2,:2] # 3,xy components
+        b=bornss_calc[:,i,1,1::2] # 3,xy components
         #print(len(b))
         C=np.linalg.norm(b,axis=1)
         plt.quiver(rs[:,0],rs[:,1],b[:,0]/C,b[:,1]/C,C,cmap=Dflep,pivot='middle')
         plt.colorbar()
         #print("before")
         plt.axis('equal')
-        plt.title(f"{syms[i]}{mols[i]} z")
 
         plt.figure()
-        plt.scatter(rs[:,0],rs[:,1],c=bornss_calc[:,i,2,2],cmap=Dflep,s=200)
+        plt.scatter(rs[:,0],rs[:,1],c=bornss_calc[:,i,2,2],cmap=Dflep,s=300)
         plt.colorbar()
         plt.axis('equal')
-        plt.title(f"{syms[i]}{mols[i]} zz")
+#q0_sp,d_sp,q0_pz,d_pz,Z
+#q0_pz,d_pz,Zi,Zo,k
+plot_guess([ 1.61e-2, 1.94, 2.7, 0.25,2.17])
+plt.show()
+
 '''
 iters=10
 dichotomy_steps=3
@@ -438,20 +477,18 @@ for it in range(iters):
 
 '''
 #q0_sp,r0_sp,d_sp,q0_pz,r0_pz,d_pz
-#results=curve_fit(fit, dummyy, borns_good ,maxfev=10000)#bounds=([-10,0,-10,0], [0,10,0,10])
-results=minimize(to_min, [105.01700087861991, 5.035552755839079, 2.7011688188221554, 0.25558413305279354],method='L-BFGS-B')
+#results=curve_fit(fit, dummyy, borns_good, bounds=([-10,0,-10,0,-10], [0,10,0,10,10]) ,maxfev=10000)#bounds=([-10,0,-10,0], [0,10,0,10])
+'''
+results=minimize(to_min, [-2.47672731,  7.665274  , -4.45484642,  3.94347635,  1.886097], bounds=[(-10, 0), (0, 10), (-10, 0), (0, 10),(-10,10)],method='L-BFGS-B')
 
 
 #xx=results[0]
 xx=results.x
 print(results)
-#print(fit(dummyy, *xx))
-#xx=[105.01700087861991, 5.035552755839079, 2.7011688188221554, 0.25558413305279354]
-#xx=[0, 3.0747330960854087, -4.153344000000001, 2.1352313167259784, 3]
-#xx=[ 0, 0, -4.153344000000001, 2,3]
-#xx=[-4.86812875, 5.13215258, -0.06042762, 7.57358168, 0.26400839]
+print(fit(dummyy, *xx))
+
 print("Fitted parameters: ",xx)
-#print(results)
+print(results)
 plt.figure()
 plt.plot([min(borns_good), max(borns_good)], [min(borns_good), max(borns_good)], 'k--')
 plt.plot(borns_good,fit(dummyy, *xx), 'rx',markersize=10)
@@ -461,6 +498,20 @@ plt.ylabel("Fitted BECs [|e|]")
 
 plot_guess(xx)
 
-#print(results)
+print(results)
 print(xx)
 plt.show()
+'''
+'''
+# Let's debug, start with 0,0 configuration, due to symmetry, BECs should be diagonal
+struct=create_structure([0,0,0])
+struct.wrap()
+born =born_parametrized(struct,  -4.153344000000001, 0.5, -4.153344000000001, 0.5,3)
+print(born)
+print(struct.get_positions())
+print(np.linalg.norm(struct.get_positions()[2]-struct.get_positions()[1]))
+print(np.linalg.norm(struct.get_positions()[1]-struct.get_positions()[0]))
+print(2.511/np.sqrt(3))
+#from ase.visualize import view
+#view(struct)
+'''

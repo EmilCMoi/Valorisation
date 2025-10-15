@@ -1,0 +1,17 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Theory}{3}{section.2}%
+\contentsline {section}{\numberline {3}Methods}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}First-principles calculations}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Molecular Dynamics}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Self-consistent solution of Euler-Lagrange equations}{4}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Born effective charges (quick explanation on the principle of calculations)}{5}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Implementation of Born effective charges}{6}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Obtaining a system with hysteresis}{6}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Domain Wall cavity model}{7}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Slater-Koster tight-binding model}{8}{subsection.3.8}%
+\contentsline {section}{\numberline {4}Transition state theory}{9}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Charge fitting}{10}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Ideas for project}{10}{section.5}%
+\contentsline {section}{\numberline {6}Annex}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Fitting of van der Waals interaction and dipole moment}{11}{subsection.6.1}%

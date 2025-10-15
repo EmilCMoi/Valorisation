@@ -15,7 +15,7 @@ plt.rcParams.update({'font.family': 'sans-serif'})
 Lflep, Lflep_r, Dflep, Dflep_r = cmaps()
 
 qb_ph=orm.QueryBuilder()
-qb_ph.append(orm.Group, filters={'id': 29}, tag='group')
+qb_ph.append(orm.Group, filters={'id': 34}, tag='group')
 qb_ph.append(StructureData, with_group='group', tag='structure',project='*')
 qb_ph.append(PwBaseWorkChain, with_incoming='structure', tag='pw_workchain', filters={'attributes.exit_status':{"==":0}})
 qb_ph.append(RemoteData, with_incoming='pw_workchain', tag='pw_remote')
@@ -28,11 +28,12 @@ qb_pw.append(orm.Group, filters={'id': 29}, tag='group')
 qb_pw.append(StructureData, with_group='group', tag='structure')
 qb_pw.append(PwBaseWorkChain, with_incoming='structure', tag='pw_workchain', filters={'attributes.exit_status':{"==":0}})
 '''
-group= orm.load_group(29)
+group= orm.load_group(34)
 print(len(qb_ph.all()))
 
 for structure,ph in qb_ph.all():
     print( " Ph PK: ", ph.pk)
+    print(ph.attributes["exit_status"])
 #print(qb_ph.all())
 rs=np.zeros((len(qb_ph.all()),2))
 borns=np.zeros((len(qb_ph.all()),4,3,3))
@@ -42,7 +43,7 @@ nerrors=0
 errorpks=[]
 which_to_read=[]
 for structure, ph in qb_ph.all():
-    if ph.pk<64000:
+    #if ph.pk<64000:
         #print(count)
         dict_ph=ph.outputs.output_parameters.get_dict()
         #print(ph.pk)
@@ -81,12 +82,15 @@ print("Calculating periodic repetitions 1/2")
 for i,r in enumerate(rs):
     v1=struct.cell[0][:2]
     v2=struct.cell[1][:2]
-    if abs(r[1])<1e-1:
-        rs=np.concatenate((rs,[r-v2]),axis=0)
+    A=np.array([v1,v2]).T
+    #rs[i]=np.array([r[1],r[0]])
+    rs[i]=A.dot(np.linalg.inv(A).T.dot(r) - np.round(np.linalg.inv(A).T.dot(r)))
+    #if abs(r[0])<1e-1:
+    #    rs=np.concatenate((rs,[r-v2]),axis=0)
         #print(np.shape(borns))
         #print(np.shape(borns[i]))
-        borns=np.concatenate((borns,[borns[i]]),axis=0)
-        which_to_read.append(which_to_read[i])
+    #borns=np.concatenate((borns,[borns[i]]),axis=0)
+    #which_to_read.append(which_to_read[i])
     #print(borns[i])
     asr=np.sum(borns[i],axis=0)
     #print("ASR for structure ", i, ": ", asr)
@@ -128,7 +132,7 @@ for i in range(2):
     plt.scatter(rs[:,0],rs[:,1],c=borns[:,2*i,2,2] + borns[:,2*i+1,2,2],cmap=Dflep,s=200)
     plt.colorbar()
     plt.axis('equal')
-
+print(np.sum)
 plt.show()
 
 np.savez("borns.npz", rs=rs, borns=borns, which_to_read=which_to_read)

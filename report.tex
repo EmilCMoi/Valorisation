@@ -1,0 +1,484 @@
+% debut d'un fichier latex standard
+\documentclass[a4paper,10pt,twoside]{article}
+% Tout ce qui suit le symbole "%" est un commentaire
+% Le symbole "\" désigne une commande LaTeX
+
+% pour l'inclusion de figures en eps,pdf,jpg, png
+\usepackage{graphicx}
+
+% quelques symboles mathematiques en plus
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{dsfont}
+
+\usepackage{subcaption} 
+\usepackage{float}%EpicMove
+\usepackage{listings}
+\usepackage{version}
+\usepackage{braket}
+\usepackage[sorting=none, backend=biber, natbib=true]{biblatex} %Imports biblatex package
+\addbibresource{bibliography.bib}
+% le tout en langue francaise
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+% on peut ecrire directement les caracteres avec l'accent
+%    a utiliser sur Linux/Windows (! dépend de votre éditeur !)
+\usepackage[utf8]{inputenc} % Pour TeXworks
+%\usepackage[latin1]{inputenc} % Pour Kile
+%\usepackage[T1]{fontenc}
+
+%    a utiliser sur le Mac ???
+%\usepackage[applemac]{inputenc}
+\usepackage{xcolor}
+% pour l'inclusion de liens dans le document 
+\usepackage[colorlinks,bookmarks=false,linkcolor=teal,urlcolor=cyan,citecolor=red]{hyperref}
+
+
+\usepackage{wrapfig}
+
+\paperheight=297mm
+\paperwidth=210mm
+
+\setlength{\textheight}{235mm}
+\setlength{\topmargin}{-1.2cm} % pour centrer la page verticalement
+%\setlength{\footskip}{5mm}
+\setlength{\textwidth}{16cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+\pagestyle{plain}
+
+% nouvelles commandes LaTeX, utilis\'ees comme abreviations utiles
+\def \be {\begin{equation}}
+\def \ee {\end{equation}}
+\def \dd  {{\rm d}}
+\def \bpm {\begin{pmatrix}}
+\def \epm {\end{pmatrix}}
+\def \vec {\mathbf}
+\newcommand{\mail}[1]{{\href{mailto:#1}{#1}}}
+\newcommand{\ftplink}[1]{{\href{ftp://#1}{#1}}}
+
+\begin{document}
+%\maketitle
+\includegraphics[width=0.3\textwidth]{Logo_EPFL.pdf}
+\begin{center}
+    \vspace{30mm}
+\large{\textbf{Journal on Master Valorisation Project in Physics: Domain Wall Dynamics and Hysteresis on Bilayer hexagonal Boron Nitride}}\\
+\vspace{10mm}
+\normalsize{Under the supervision of Professor Oleg Yazyev, Johan Félisaz, MSc, Dr. Ruslan Yamaletdinov, Dr. Iaroslav Zhumagulov\\ \vspace{5mm} \textit{Chair of Computational Condensed Matter Physics,\\ École Polytechnique Fédérale de Lausanne, EPFL}}\\
+\vspace{100mm}%
+\normalsize{Emiliano Cruz Aranda, MSc}\\%
+\normalsize{\today}%
+\vspace{10mm}
+\end{center}
+\newpage
+%\begin{multicols}{2}
+\begin{abstract}
+
+\end{abstract}
+\tableofcontents
+\baselineskip=16pt
+\parindent=0pt
+\parskip=12pt
+\newpage
+\section{Introduction}
+
+\section{Theory}
+
+\begin{comment}
+\subsection{Dipole moment and Born effective charges}
+The dipole moment in configuration space can be written as: %introduce formulas
+
+The interaction between an electric field $\vec{E}$ and the atoms in the BN bilayer can be expressed through the Born effective charge tensor
+\begin{equation}
+    Z^*_{\kappa,i,j}=\frac{\partial d_i}{\partial r_{\kappa,j}}=\frac{\partial F_{\kappa,j}}{\partial E_i}\hspace{10mm}i,j=x,y,z,
+\end{equation}
+where $\vec{d}$ is the dipole moment, $\vec{r}$ is the displacement of the atom, and $\vec{F}_{\kappa}$ is the force applied on atom $\kappa$. Therefore, at first order, one can simply obtain the force applied on an atom by an electric field by multiplying it with the jacobian of the dipole moment. To simplify our calculations, we can consider the derivatives in configuration space when the atoms of each layer are displaced together due to the force of the intralayer bonds. The force applied by the electric field is therefore written at first order as 
+\begin{equation}
+    \vec{F}_{\text{Top}}=-\vec{F}_{\text{Botttom}}= ...
+\end{equation}
+\end{comment}
+
+
+\section{Methods}
+\subsection{First-principles calculations}
+The Density Functional Theory (DFT) code Quantum ESPRESSO\cite{qe1}\cite{qe2} (QE) was used to perform the first-principles calculations presented in Annex. Self-consistent calculations where performed on different BN stackings while using the vdw-df2-c09 correction functional\cite{vdw1}\cite{vdw2}\cite{vdw3}\cite{vdw4} and pseudopotentials from the Pseudo Dojo\cite{dojo}. The Wannier90\cite{Wannier90} code was then deployed in order to calculate the Wannier centers of a given configuration from results of a non-self-consistent calculation. Given the set of Wannier centers $\vec{r}_i$, the dipole moment can be calculated as
+\begin{equation}
+    \vec{d}=\sum_{i}q_i\vec{r_i},
+\end{equation}
+where the sum runs over the ions and electrons. It should be noted that each electronic Wannier center possesses a charge -2 due to spin degeneracy.
+
+The results from these calculations where then fit in order to calculate the polarization as a function of bilayer stacking.
+\subsection{Molecular Dynamics}
+Molecular dynamics are run with the LAMMPS program. The intralayer potentias used are the extended tersoff potential (extep) (BN.extep) \cite{los_extended_2017} and the rebo potential (CH.rebo). The interlayer potential used is the ilp/graphene/hbn potential\cite{ouyang_controllable_2020}\cite{ouyang_nanoserpents_2018}\cite{leven_inter-layer_2014}\cite{leven_interlayer_2016}\cite{kolmogorov_registry-dependent_2005}\cite{maaravi_interlayer_2017}. The parameters are:
+\begin{lstlisting}
+mass            1 10.811  # B
+mass            2 14.0067  # N
+mass            3 12.01  # C
+    
+# All interactions are defined here with proper parameters
+pair_style  hybrid/overlay rebo extep 
+            ilp/graphene/hbn/opt 16.0 coul/shield 16.0
+pair_coeff  * * rebo CH.rebo     NULL NULL C
+pair_coeff  * * extep BN.extep B N NULL
+pair_coeff  * * ilp/graphene/hbn/opt  BNCH.ILP B N C
+pair_coeff  1 1 coul/shield 0.70
+pair_coeff  1 2 coul/shield 0.695
+pair_coeff  2 2 coul/shield 0.69
+\end{lstlisting}
+%pair_style  hybrid/overlay extep ilp/graphene/hbn/opt 16.0 coul/shield 16.0
+%pair_coeff  * * extep /home/zanko/mylammps/potentials/BN.extep B N
+%pair_coeff  * * ilp/graphene/hbn/opt  /home/zanko/mylammps/potentials/BNCH.ILP B N
+%pair_coeff  1 1 coul/shield 0.70
+%pair_coeff  1 2 coul/shield 0.695
+%pair_coeff  2 2 coul/shield 0.69
+
+A timestep of 1 fs is used for molecular dynamics in the NVT ensemble at 4 K with damping of 10 fs. The systems are first relaxed through the minimize command. Then, the forces are updated every 10 time steps (0.01 ps). The forces were supposed to be proportional to the Born effective charges.
+\begin{comment}
+The interaction between an electric field $\vec{E}$ and the atoms in the BN bilayer can be expressed through the Born effective charge tensor
+\begin{equation}
+    Z^*_{\kappa,i,j}=\frac{\partial d_i}{\partial r_{\kappa,j}}=\frac{\partial F_{\kappa,j}}{\partial E_i}\hspace{10mm}i,j=x,y,z,
+\end{equation}
+where $\vec{d}$ is the dipole moment, $\vec{r}$ is the displacement of the atom, and $\vec{F}_{\kappa}$ is the force applied on atom $\kappa$. The Born effective charges are averaged for the closest B and N atoms on each layer so $(Z^*_{z,x},Z^*_{z,y})$ only depends on the relative lattice displacement. The relative lattice displacement is calculated from the positions of each atom and the polarization at that specific position as well as the Born effective charges are calculated from applying the respective fit to that displacement. As LAMMPS only allows for 32 groups of atoms to apply forces, each atom is assigned to 2 groups, one for the force applied on the $x$ direction and another for the force applied on the $y$ direction. The force of the groups ranges from the smallest force value in that direction to the largest force. These values are the same when the absolute value is taken. The division is linear. The 0 force groups are not actually created in the LAMMPS input file.
+\end{comment}
+In order to obtain the initial coordinates of atoms in twisted bilayers, the python library TWISTER is used\cite{naik_twister_2022}\cite{naik_ultraflatbands_2018}.
+\subsection{Self-consistent solution of Euler-Lagrange equations}\label{sec:self-consistent}
+
+\textbf{I am not currently using this model, I leave it for reference on the different factors at play: elastic energy, vdW interaction, and the interaction between dipole moment and an external electric field.}
+
+In this section, a continuum model for relaxing twisted and strained bilayer BN is presented\cite{lin_effective_2019}\cite{nam_lattice_2017}\cite{lin_pressure-induced_2020}.
+The energy of a hBN bilayer is composed of the elastic energy of each layer and the interlayer interaction.
+The elastic term can be written as 
+\begin{equation}
+    E_{el}=\sum_{j=1}^2 \int \dd^2 \vec{r} \left\{\frac{\lambda_j+\mu_j}{2}\left(\frac{\partial u_x^j}{\partial x}+\frac{\partial u_y^j}{\partial y}\right)^2 + \frac{\mu_j}{2}\left[\left(\frac{\partial u_x^j}{\partial x}-\frac{\partial u_y^j}{\partial y}\right)^2 + \left(\frac{\partial u_y^j}{\partial x}+\frac{\partial u_x^j}{\partial y}\right)^2 \right] \right\},
+\end{equation}
+where $j$ indicates the layer, $\lambda_j$ and $\mu_j$ are the Lamé coefficients of the layer, and $\vec{u}(\vec{r})$ is the layer's deformation with respect to the equilibrium at point $\vec{r}$.
+The interlayer interaction can be written as 
+\begin{align}
+    E_{int}=&\int V(\vec{d}(\vec{r}))\dd^2 \vec{r},\\
+    \vec{d}(\vec{r})=&(S^{-1}-I)\vec{r}+\vec{u}^1(\vec{r})-\vec{u}^2(\vec{r})
+\end{align}
+where $V$ is a function that yields the energy density due to the interlayer interaction given the local deformation $\vec{d}(\vec{r})$. $S$ is any of the transformations defined in section \ref{sec:twiststrain}, depending on the problem.
+Writing $E_{tot}=\int \mathcal{L}(\{\vec{u}^j\},\{\partial_x\vec{u}^j\},\{\partial_y\vec{u}^j\})$ gives rise to the Euler-Lagrange equations
+\begin{equation}
+    \partial_x\left(\frac{\partial\mathcal{L}}{\partial(\partial_x u^j_{\nu})}\right)+\partial_y\left(\frac{\partial\mathcal{L}}{\partial(\partial_y u^j_{\nu})} \right)-\frac{\partial\mathcal{L}}{\partial u^j_{\nu}}=0, \hspace{10mm} \nu=x,y.
+\end{equation}
+To solve these equations, a Fourier expansion over the reciprocal superlattice vectors $\vec{G}_s$ is deployed.
+\begin{align}
+    \vec{u}^j(\vec{r})=&\sum_{\vec{G}_s}\tilde{\vec{u}}^j(\vec{G}_s)e^{i\vec{G}_s\cdot\vec{r}}\\
+    \frac{\partial\mathcal{L}}{\partial \vec{u}^2}(\vec{r})=-\frac{\partial\mathcal{L}}{\partial \vec{u}^1}(\vec{r})=\frac{\partial{V}}{\partial \vec{d}}(\vec{r})=&\sum_{\vec{G}_s}\tilde{\vec{f}}^j(\vec{G}_s)e^{i\vec{G}_s\cdot\vec{r}}
+\end{align}
+The $\tilde{\vec{f}}^j(\vec{q})$ can be calculated as an integral over the supercell
+\begin{equation}
+    \tilde{\vec{f}}^j(\vec{q})=\frac{1}{\Omega}\int \dd^2 \vec{r} \cdot \frac{\partial{V}}{\partial \vec{d}}(\vec{r}) e^{-i \vec{q}\cdot \vec{r}}
+\end{equation}\label{eq:ftilde}
+Finally, the Euler Lagrange equations are rewritten as 
+\begin{equation}
+    \tilde{\vec{u}}^j(\vec{q})=(-1)^j\bpm (\lambda_j + 2 \mu_j)q_x^2 + \mu_j q_y^2 && (\lambda_j+\mu_j) q_xq_y \\ (\lambda_j+\mu_j) q_xq_y&&  (\lambda_j + 2 \mu_j)q_y^2 + \mu_j q_x^2\epm^{-1}\tilde{\vec{f}}(\vec{q})=M^{-1}(\vec{q})\tilde{\vec{f}}(\vec{q}).
+\end{equation}\label{eq:utilde}
+These equations can be solved self-consistently in order to obtain the local deformation of the lattice taking the elasticity of the layers and relaxation due to the interlayer interaction into account. Considering one displacement vector field $\vec{u}$ per layer is necessary in the case of lattices with different elastic properties. As hBN homojunctions are considered in the present work, a single displacement vector $\vec{u}=\vec{u}^1-\vec{u}^2$ field can be considered.
+
+The interlayer interaction due to vdW forces is expanded over the reciprocal lattice vectors of hBN, the first three reciprocal vectors $\vec{g}_1=\vec{b}_1$, $\vec{g}_2=\vec{b}_2$, $\vec{g}_3=\vec{b}_1+\vec{b}_2$ are sufficient
+\begin{equation}
+    V_{vdW}(\vec{d}(\vec{r}))=\tilde{V}\sum_{k=1}^3\cos(\vec{g}_k\cdot\vec{d}(\vec{r}))
+\end{equation}
+The effect of an out-of-plane electric field can be added as an effective interlayer interaction as the electric field times the local out-of-plane polarization
+\begin{equation}
+    V_{E_z}(\vec{d}(\vec{r}))=\vec{E}\cdot\vec{p}(\vec{d}(\vec{r}))=E_zp_z\sum_{k=1}^3\sin(\vec{g}_k\cdot\vec{d}(\vec{r}))
+\end{equation}
+Therefore the gradient to expand as a Fourier series is given by
+\begin{equation}
+    \frac{\partial V(\vec{d}(\vec{r}))}{\partial d}=\sum_{k=1}^3 \vec{g}_k\left[E_zp_z\cos(\vec{g}_k\cdot\vec{d}(\vec{r}))-\tilde{V}\sin(\vec{g}_k\cdot\vec{d}(\vec{r}))\right]
+\end{equation}
+In the implementation of this algorithm, the integral given by Eq.\eqref{eq:ftilde} is replaced by a discrete sum over the superlattice with grid density of 1/\AA$^2$. 
+The number of points taken for the expansion on reciprocal superlattice vectors is chosen to be the 60 shortest ones, excluding 0, following previous studies. Only a sixth of these need to be calculated through the Fourier transform of the energy gradient, as the $C_3$ symmetry of the system implies that $\tilde{\vec{u}}(R_{\alpha}\vec{q})=\tilde{\vec{u}}(\vec{q})$, where $R_{\alpha}$ is the rotation matrix of the angles $\alpha=\frac{2\pi}{3},\frac{4\pi}{3}$. The realness of $\vec{u}(\vec{r})$ also implies the constraint $\tilde{\vec{u}}(-\vec{q})=\tilde{\vec{u}}^*(\vec{q})$.
+At each step, the $\tilde{\vec{u}}$ are calculated by mixing the result of 
+Eq.\eqref{eq:utilde} with the previous step's result.
+\begin{equation}
+    \tilde{\vec{u}}_{n+1}(\vec{q})=(1-\eta)\tilde{\vec{u}}_{n}(\vec{q})+\eta M^{-1}(\vec{q})\tilde{\vec{f}}_n(\vec{q})
+\end{equation}
+The mixing coefficient $\eta$ is 5\%, and the  algorithm is run until the error 
+\begin{equation}
+    \epsilon=\max_{\vec{q}}\frac{\left\|\tilde{\vec{u}}_n(\vec{q})-\tilde{\vec{u}}_{n+1}(\vec{q})\right\|}{\|\tilde{\vec{u}}_{n+1}(\vec{q})\|}
+\end{equation}
+is smaller than $10^{-4}$. $\lambda=1.779$ eV/\AA$^2$ and $\mu=7.939$ eV/\AA$^2$ for hBN are considered\cite{lin_effective_2019}. Any integrals performed using this model are performed discretely with density 1/\AA$^2$. The sampling density, mixing parameter, and convergence thresholds were selected by studying the variations of the integrals performed.
+
+\subsection{Born effective charges (quick explanation on the principle of calculations)}
+
+Clearly, the Born effective charges as defined in eq.(2) can be calculated from the dipole moment, looking at interlayer displacement. The Born effective charges are averaged for the closest B and N atoms on each layer so $(Z^*_{z,x},Z^*_{z,y})$ only depends on the relative lattice displacement. The relative lattice displacement is calculated from the positions of each atom (distance between the closest B atoms on both layers found through KDTree for instance) and the polarization at that specific position is calculated from applying the respective fit to that displacement (fig. \ref{fig:sliding2_dz}, eq. 17). The term added to the potential due to an out-of-plane electric field is then the term in eq.12. The Born effective charges are then the gradient of the polarization, which when under the effect of an out-of-plane electric field give a force seen in the cosine term of eq.13.
+
+This is still somewhat of a simplification, one needs to take the (presumably exponential) decay of the BECs into account.
+\subsection{Implementation of Born effective charges}
+Ideas to implement BECs in a better way:
+\begin{enumerate}
+    \item Modify the LAMMPS source code to include:
+    \begin{enumerate}
+        \item A new fix that correctly calculates the tensor product of the Born effective charges and the electric field. (A first prototype of this fix has been implemented without any testing, as first we need to assign the BEC attribute to the atoms which isn't implemented yet, one needs to create a new atom type)
+        \item A modified interlayer potential which modifies both the charges and the Born effective charges of atoms based on their local environment. (Needs a lot of fitting data)
+    \end{enumerate}
+    \item Use KIM and KIMPY:
+    \begin{enumerate}
+        \item No interlayer potential has been added to KIM yet. How could one implement this knowing that atoms are not assigned layers in advance? One could assign them layers based on nearest neighbors list, for instance having the 3 nearest always be intralayer and the further ones being interlayer. This wouldn't work in high pressure. (If the layers are closer than 2.511 Å for instance). This same potential could take care of charges and BECs.
+    \end{enumerate}
+\end{enumerate}
+\subsection{Obtaining a system with hysteresis}
+Twisted bilayer hBN has a high density of merons whose size increases or decreases when an electric field is applied. And return to their previous state once the electric field is removed. One would wish for there to be a hysteresis so one can store information. Three current ideas could help to obtain this, either together or separately:
+\begin{itemize}
+    \item A 'deformation bath' stores the domain wall even at 0 field and is able to spit it back out. This has been done in the 1D case experimentally by adding a perforated graphene bilayer between the BN bilayer (\url{https://www.nature.com/articles/s41586-024-08380-2}). The DW then forms in the perforation and the deformation is stored by the graphene. This could provide 1 bit per domain wall. A factor to optimize then would be the shape of the perforations. One should also beware of the deformation of one domain wall affecting the others.
+    \item Having the BN bilayer be slightly compressed in plane instead of completely tense could provide some leeway for stable arrangements of the domain walls different from the minimal energy case through slight folding.
+    \item Vacancies have been theorized and computationally observed in the 1D case to pin domain walls \cite{he_ultrafast_2024}\cite{yasuda_stacking-engineered_2021}. Therefore removing some atoms in key places could help to stabilize the domain walls out of the usual minimal energy configuration.
+\end{itemize}
+In the initial BN paper, a hysteresis was observed in a twisted device. The supplementary materials suggest this is unusual (which has been the consensus computationally \cite{he_ultrafast_2024}) and gives the idea that vacancies and imperfections in the sample may be the reason of this\cite{yasuda_stacking-engineered_2021}.
+
+The deformation bath method has tentatively shown a good result in this study paired with slight compression (the supercell is resized by a factor of 99.5\%). Results are shown for a cycle of amplitude 10 V/Å (which is really big, 50 times the field used in \cite{yasuda_stacking-engineered_2021}) the twist is $\approx0.6^{\circ}$ ($m=55,n=54$) (as in \cite{yasuda_stacking-engineered_2021}). The perforations are circular with radius 50 Å.
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[h!]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Hysteresis1.pdf}
+        \caption{Initial hysteresis result}
+        \label{fig:Hysteresis1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h!]{0.49\textwidth}
+         \centering
+        \includegraphics[width=\textwidth]{figures/Hysteresis1_time.pdf}
+        \caption{Initial hysteresis result in time}
+        \label{fig:Hysteresis1_time}
+    \end{minipage}
+\end{figure}
+
+\subsection{Domain Wall cavity model}
+
+A general model for the behaviour of Domain Walls in cavities is proposed here.
+A cavity is described by a width function $f(x)$. This function is 0 at the cavitiy's extremities and bigger than 0 in between these extremes.
+
+\begin{equation}
+    f(x)=\begin{cases}
+    0 & \text{if } x\leq x_1 \text{ or } x\geq x_2,\\
+    0<f(x) & \text{if } x_1<x<x_2.
+    \end{cases}
+\end{equation}
+
+The energy of the cavity under the effect of an out-of-plane electric field $E_z$ and with a DW placed in $x$ is then written as 
+\begin{equation}
+    E=\gamma f(x) + p_zE_z\left( \int_{x_1}^x f(s)\dd s - \int_{x}^{x_2}f(s)\dd s\right)
+\end{equation}
+
+DW motion is obtained if the force on the DW is not 0. The force on the DW is given by the derivative of the energy with respect to $x$. The force is then
+\begin{equation}
+    F(x)=-\gamma f'(x) - 2p_zE_zf(x)
+\end{equation}
+Does the DW have a mass? Or is the relativistic equation used instead?
+
+The condition on $E_z$ for the DW to move is then
+\begin{equation}
+    E_z\neq\frac{\gamma f'(x)}{2p_zf(x)}
+\end{equation}
+The sign of $F(x)$ gives the direction of motion.
+
+For total switching to happen (in the adiabatic limit),
+\begin{equation}
+    F(x) < 0, \text{ or }F(x)> 0 \hspace{10mm}\forall x \in [x_1,x_2]
+\end{equation}
+
+A specific example is a circular cavity of radius $r$. In this case, we have
+\begin{equation}
+    f(x)=\begin{cases}
+    0 & \text{if } |x|\geq r,\\
+    2\sqrt{r^2-x^2} & \text{if } |x|<r.
+    \end{cases}
+\end{equation}
+\begin{equation}
+    f'(x)=\frac{-2x}{\sqrt{r^2-x^2}}
+\end{equation}
+
+Then
+\begin{equation}
+    E=- \pi E_{z} p_{z} r^{2} + 2 E_{z} p_{z} \left(r^{2} \operatorname{asin}{\left(\frac{x}{r} \right)}+ r x \sqrt{1 - \frac{x^{2}}{r^{2}}} \right) + 2 \gamma \sqrt{r^{2} - x^{2}}
+\end{equation}
+
+\begin{equation}
+    E'=4 E_{z} p_{z} \left(\frac{r \sqrt{1 - \frac{x^{2}}{r^{2}}}}{2} + \frac{r}{2 \sqrt{1 - \frac{x^{2}}{r^{2}}}} - \frac{x^{2}}{2 r \sqrt{1 - \frac{x^{2}}{r^{2}}}}\right) - \frac{2 \gamma x}{\sqrt{r^{2} - x^{2}}}
+\end{equation}
+
+\subsection{Slater-Koster tight-binding model}
+A way to more precisely study the polarization of the system is through a tight-binding model. A model that can take the local deformation of the system into account is the Slater-Koster model. From the eigenvectors of the Hamiltonian whose eigenvalues are below the Fermi level, one can find the probability of electron presence in each site. This can be used to find the dipole moment of the system and therefore the polarization. This could also lead to a more precise study of the Born effective charges.
+
+Pybinding allows to setup a system with the appropriate hopping parameters and apply a modifier to them which takes the deformation into account in the Slater-Koster fashion, which is an exponential decrease. What is left to see is the efficiency of this model for systems with several thousand atoms and the number of nearest neighbors needed.
+
+The model uses the Bloch wave functions
+\begin{equation}
+    \ket{\psi_\vec{k}}=\frac{1}{\sqrt{N}}\sum_{i=1}^N e^{i\vec{k}\cdot \vec{r}_i}\ket{\phi_i}
+\end{equation}
+The Hamiltonian is then
+\begin{equation}
+    H=-\sum_{i,j}t(|\vec{r}_i-\vec{r}_j|)\ket{\phi_i}\bra{\phi_j}+\sum_i V(\vec{r}_i)\ket{\phi_i}\bra{\phi_i}
+\end{equation}
+where $V_B=-1.287$ eV, $V_N=-5.393$ eV, $t$ is calculated as 
+\begin{equation}
+    t(r_{ij})=\left( \frac{z_{ij}}{r_{ij}}\right)^2 V_{pp\sigma}(r_{ij})+\left(1-\left(\frac{z_{ij}}{r_{ij}}\right)^2\right)V_{pp\pi}(r_{ij})
+\end{equation}
+
+Data from this model is used to fit polarization as a function of interlayer distance. The curve thus obtained for the maximum polarization configuration (AB) is presented in figs \ref{fig:exp} and \ref{fig:exp_log}. The fit is an exponential decay 
+\begin{equation}
+    d_z(\delta)=d_0\exp(-\delta/\delta_0)
+\end{equation}
+
+The parameters thus obtained are $d_0=0.104$ eÅ, $\delta_0=1.59$ Å. This result can be added to previous polarization with in plane sliding results to obtain a general formula as a function of in- and out-of-plane displacement.
+
+\begin{equation}
+    d_z(\vec{d},\delta)=d_0\frac{2\sqrt{3}}{9}\exp{(-\delta/\delta_0)}\sum_{k=1}^3\sin(\vec{g}_k\cdot\vec{d}(\vec{r}))
+\end{equation}
+where $\vec{d}$ is the in-plane displacement, $\delta$ is the out-of-plane displacement, and $\vec{g}_k$ are the reciprocal lattice vectors of the hBN bilayer. These results allow one to calculate all the Born Effective Charges with accuracy instead of relying on the exponential decay to not be quite significant, even though it is. This also allows one to obtain the diagonal (3,3) component of the BECs by deriving with respect to $\delta$.
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[h!]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/exp.pdf}
+        \caption{Exponential decrease in dipole moment as a function of interlayer distance}
+        \label{fig:exp}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h!]{0.49\textwidth}
+         \centering
+        \includegraphics[width=\textwidth]{figures/exp_log.pdf}
+        \caption{Exponential decrease in dipole moment as a function of interlayer distance, logarithmic scale}
+        \label{fig:exp_log}
+    \end{minipage}
+\end{figure}
+
+\section{Transition state theory}
+
+From the rate constant $k$, one can obtain the time evolution of the system at finite temperature
+\begin{equation}
+    p(t)=1-e^{-kt}
+\end{equation}
+$k$ is a function of the energy barrier and temperature (at least).
+\subsection{Charge fitting}
+The charges of each atom are calculated and are the ultimate way of simulating the polarization of the system and energy potential when interacting with an electric field. The charge of atomic species $\alpha$ with order parameter $\vec{r}$ (local deformation) is given by
+\begin{equation}
+    q_{\alpha}(\vec{r})=q_{\alpha,\infty}+\exp\left(\frac{-\vec{r}\cdot \vec{n}}{d_{\alpha}}\right)\left(q_{\alpha,0}+\sum_{k=1}^3 \left[ q_{\alpha,i}\sin(\vec{g}_k\cdot\vec{r})+q_{\alpha,p}\cos(\vec{g}_k\cdot\vec{r}) \right]\right)
+\end{equation}
+$\vec{n}$ is the normal vector of the layer, the other parameters are to be determined from DFT data (currently determined from tight-binding).
+\section{Ideas for project}
+I have observed interesting properties of scattering. We could verify well-known properties of solitons such as:
+\begin{itemize}
+    \item Critical velocity for reflection (elastic collision) (annihilation otherwise)
+    \item Existence of bound states (bions)
+    \item Analytical expression for velocity after collision given velocity before collision
+    \item Dependence on temperature
+    \item Phase diagram for going through or not or bions as a function of temperature and speed
+    \item Knowing how the electric fields play a role more precisely on velocity helps to relate everything
+\end{itemize}
+Concerning hysteresis, it's probably worth it to explore vacancies, as these are doable in 1D.
+\begin{itemize}
+    \item Vacancies of Nitrogen attract DWs, vacancies of Boron probably repel DWs.
+    \item Possible phase diagram: vacancies/unit length and initial velocity. One could also vary temperature. Maybe some analytic expression can be extracted from this or compare to well known results for phi 4 model.
+    \item These vacancies could help create a hysteresis, a phase diagram could be performed.
+\end{itemize}
+
+\section{Annex}
+In this section, relevant results from previous research on bilayer BN are presented.
+\subsection{Fitting of van der Waals interaction and dipole moment}
+The total energy from DFT calculations for bilayer BN when displayed along the $x$ axis is shown in Fig.\ref{fig:sliding_E} along with a $C_3$ symmetric fit, a similar fit for the out-of-plane dipole moment obtained through wannierization of DFT data is shown in Fig.\ref{fig:sliding_dz}. The results for sliding along the entire unit cell are presented in Figs.\ref{fig:sliding2_E} and \ref{fig:sliding2_dz} along with the same fits. 
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[h!]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/sliding_E.pdf}
+        \caption{Total energy of BN bilayers obtained through sliding along the $x$ axis along with a fit}
+        \label{fig:sliding_E}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h!]{0.49\textwidth}
+         \centering
+        \includegraphics[width=\textwidth]{figures/sliding_dz.pdf}
+        \caption{Out-of-plane dipole moment of BN bilayers obtained through sliding along the $x$ axis along with a fit}
+        \label{fig:sliding_dz}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[h!]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/sliding2_E.pdf}
+        \caption{Total energy of BN bilayers obtained through sliding along the entire unit cell (top) along with a fit (bottom)}
+        \label{fig:sliding2_E}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h!]{0.49\textwidth}
+         \centering
+        \includegraphics[width=\textwidth]{figures/sliding2_dz.pdf}
+        \caption{Out-of-plane dipole moment of BN bilayers obtained through sliding along the entire unit cell (top) along with a fit (bottom)}
+        \label{fig:sliding2_dz}
+    \end{minipage}
+\end{figure}
+
+The fits for the in-plane dipole moment are shown in Figs.\ref{fig:sliding_dx} and \ref{fig:sliding2_dx}
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[h!]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/sliding_dx.pdf}
+        \caption{In-plane dipole moment of BN bilayers obtained through sliding along the $x$ axis along with a fit}
+        \label{fig:sliding_dx}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h!]{0.49\textwidth}
+         \centering
+        \includegraphics[width=\textwidth]{figures/sliding2_dx.pdf}
+        \caption{In-plane dipole moment of BN bilayers obtained through sliding along the entire unit cell (top) along with a fit (bottom)}
+        \label{fig:sliding2_dx}
+    \end{minipage}
+\end{figure}
+
+The fit equations can be written as
+\begin{align}
+    E(\vec{d})=&E_0+\sum_{k=1,2,3} \varepsilon \cos(\vec{g}_k\cdot\vec{d}),\\
+    d_z(\vec{d})=&\sum_{k=1,2,3} d_{\perp} \sin(\vec{g}_k\cdot\vec{d}), \\
+    \vec{d}_{\parallel}(\vec{d})=& d_{\parallel}A^{-1}\bpm \cos(\vec{g}_1\cdot \vec{d})-\cos(\vec{g}_3\cdot \vec{d}) \\ \cos(\vec{g}_2\cdot \vec{d})-\cos(\vec{g}_3\cdot \vec{d})\epm, \\
+\end{align}
+where $\vec{d}$ is the relative displacement between the layers, $\vec{g}_k$ are the first reciprocal lattice vectors $\vec{g}_1=\vec{b}_1$, $\vec{g}_2=\vec{b}_2$, and $\vec{g}_3=-\vec{b}_1-\vec{b}_2$, and $A=(\vec{a}_1, \vec{a}_2)$ is the lattice matrix. The values of the fit parameters found through a non-linear least squares method are given in Tab.\ref{tab:params}, the results are also given divided by the area of the unit cell.
+
+\begin{table}[h!]
+    \centering
+         \begin{tabular}{||c|c|c|c|c|c|c||}
+        \hline
+         $E_0$ [eV]& $\varepsilon$ [meV]& $d_{\bot}$ [m$e$Å]& $\tilde{V}$ [meV/\AA$^2$]& $p_z$ [m$e/$Å] & $d_{\parallel}$ [m$e$Å]& $p_{\parallel}$ [m$e/$Å]\\
+        \hline \hline
+         -729.334 &  6.682 & 1.212 & 2.120 & 0.384 & -1.149&-0.364  \\
+        \hline 
+        \end{tabular}
+        \captionof{table}{Fit coefficients for bilayer sliding}\label{tab:params}
+\end{table}
+
+\begin{comment}
+\begin{thebibliography}{}
+    \bibitem{motivation}Kenji Yasuda et al., "Stacking-engineered ferroelectricity in bilayer boron nitride", Science 372, 1458-1462(2021), DOI: 10.1126/science.abd3230
+    \bibitem{model}Aitor Garcia-Ruiz, Vladimir Enaldiev, Andrew McEllistrim, and Vladimir I. Fal’ko, "Mixed-Stacking Few-Layer Graphene as an Elemental Weak Ferroelectric Material",
+    Nano Letters 2023 23 (10), 4120-4125
+    DOI: 10.1021/acs.nanolett.2c04723
+    \bibitem{materials}The Materials Project, "Materials Data on BN by Materials Project" DOI: https://doi.org/10.17188/1281942
+    \bibitem{params_h} R. M. Ribeiro and N. M. R. Peres, "Stability of boron nitride bilayers: Ground-state energies, interlayer distances,
+    and tight-binding description", Physical Review B 83, 235312 (2011), DOI: 10.1103/PhysRevB.83.235312
+    \bibitem{params_eps}Laturia, Akash, Maarten L. Van de Put, and William G. Vandenberghe.
+    2018. "Dielectric properties of hexagonal boron nitride and transition
+    metal dichalcogenides: from monolayer to bulk." npj 2D Materials and
+    Applications 2(1): 6, DOI: 10.1038/s41699-018-0050-x    
+    \bibitem{qe1}Paolo Giannozzi et al., "QUANTUM ESPRESSO: a modular and open-source software project for quantum simulations of materials",  2009 J. Phys.: Condens. Matter 21 395502
+    DOI: 10.1088/0953-8984/21/39/395502
+    \bibitem{qe2}P. Giannozzi et al., "Advanced capabilities for materials modelling with Quantum ESPRESSO", 2017 J. Phys.: Condens. Matter 29 465901
+    DOI: 10.1088/1361-648X/aa8f79
+    \bibitem{pseudo}M. J. van Setten, M. Giantomassi, E. Bousquet, M. J. Verstraete, D. R. Hamann, X. Gonze, G.-M. Rignanese, "The PseudoDojo: Training and grading a 85 element optimized norm-conserving pseudopotential table",
+    Computer Physics Communications 226, 39-54 (2018)
+    DOI: 10.1016/j.cpc.2018.01.012 
+    \end{thebibliography}
+\end{comment}
+\printbibliography
+%\end{multicols}
+\end{document}

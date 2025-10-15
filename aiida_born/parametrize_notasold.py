@@ -199,7 +199,7 @@ for i in range(len(rs)):
     structs.append(struct)
     borns_good=np.concatenate((borns_good, np.ravel(borns[i])))
 
-def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
+def born_parametrized(atoms,q0_sp,d_sp,q0_pz,d_pz,Z):
     """
     Calculate registry-dependent BECs and charges for a given structure.
     """
@@ -208,14 +208,14 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
     na=len(atoms)
     charges=np.zeros(na)
     born=np.zeros((na, 3, 3))
-
-    born_params={"B":{"N":{ 'q0_pz':q0_pz,'d_pz':d_pz}, 'Zi':Zi,'Zo':Zo} ,"N":{"B":{},'Zi':-Zi,'Zo':-Zo}}
+    
+    born_params={"B":{"N":{'q0_sp':q0_sp,'d_sp':d_sp, 'q0_pz':q0_pz,'d_pz':d_pz}, 'Z':Z} ,"N":{"B":{},'Z':-Z}}
     born_paramss=copy.deepcopy(born_params)
-    #born_paramss["N"]["B"]["q0_sp"]=-q0_sp
+    born_paramss["N"]["B"]["q0_sp"]=-q0_sp
     born_paramss["N"]["B"]["q0_pz"]=-q0_pz
     #born_paramss["N"]["B"]["r0_sp"]=r0_sp
     #born_paramss["N"]["B"]["r0_pz"]=r0_pz
-    #born_paramss["N"]["B"]["d_sp"]=d_sp
+    born_paramss["N"]["B"]["d_sp"]=d_sp
     born_paramss["N"]["B"]["d_pz"]=d_pz
     pos=atoms.get_positions()
     cell=atoms.get_cell()
@@ -228,7 +228,7 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
     #normals=KDnormals(atoms)
     
     for i in range(na):
-        #charges[i]+=born_paramss[atoms.symbols[i]]['Z']  # Initializing charges with q0
+        charges[i]+=born_paramss[atoms.symbols[i]]['Z']  # Initializing charges with q0
 
         # Interlayer contributions
         if atoms.get_array("mol-id")[i] == 1:
@@ -265,7 +265,6 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
                     charges[i]+=Tap*q0*np.exp(-d0*(r_ij-r0))
                     charges[j]-=Tap*q0*np.exp(-d0*(r_ij-r0))
         # Intralayer contributions
-        '''
         if atoms.symbols[i]=="B":
             indices, offsets = nlborn.get_neighbors(i)
             for j, offset in zip(indices, offsets):
@@ -279,7 +278,7 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
                     Tap=20*(r_ij/rcut)**7 - 70*(r_ij/rcut)**6 + 84*(r_ij/rcut)**5 - 35*(r_ij/rcut)**4+1
                     charges[i]+=Tap*q0*np.exp(-d0*(r_ij-r0))
                     charges[j]-=Tap*q0*np.exp(-d0*(r_ij-r0))
-        '''
+
 
     # The following should adhere to the mathematical expression in my thesis (eq. 36) by explicitly inserting eq. 23
 
@@ -305,7 +304,7 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
                             r0=0#born_paramss[atoms.symbols[lambd]][atoms.symbols[sigma]]["r0_pz"]
                             #np.power(-1,kappa==sigma)*
                             sum_sigma+=np.power(-1,kappa==sigma)*q0*(dTap*np.exp(-(r_lambda_sigma-r0)*d0)-Tap*np.exp(-(r_lambda_sigma-r0)*d0)*d0)*(pos[sigma]-pos[lambd]+offset@cell)[j]/ r_lambda_sigma
-                        '''
+                        
                         elif (atoms.symbols[sigma]!=atoms.symbols[lambd]) and (atoms.get_array("mol-id")[sigma]==atoms.get_array("mol-id")[lambd]) and (lambd==kappa or sigma==kappa):
                             assert int(lambd==kappa)+int(sigma==kappa)<2
                             #print("Intralayer", lambd, sigma)
@@ -317,7 +316,7 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
                             r0=0#born_paramss[atoms.symbols[lambd]][atoms.symbols[sigma]]["r0_sp"]
                             #np.power(-1,kappa==sigma)*
                             sum_sigma+=np.power(-1,kappa==sigma)*q0*(dTap*np.exp(-(r_lambda_sigma-r0)*d0)-Tap*np.exp(-(r_lambda_sigma-r0)*d0)*d0)*(pos[sigma]-pos[lambd]+offset@cell)[j]/ r_lambda_sigma
-                        '''
+                        
                     sum_lambda+=sum_sigma*(pos[lambd,i])#+offlambd@cell[i])
                     
                 
@@ -326,9 +325,8 @@ def born_parametrized(atoms,q0_pz,d_pz,Zi,Zo):
     
     # Add partial charges to the diagonal elements
     for i in range(na):
-        for j in range(2):
-            born[i,j,j]+=born_paramss[atoms.symbols[i]]["Zi"]+charges[i]#charges[i]
-        born[i,2,2]+=born_paramss[atoms.symbols[i]]["Zo"]+charges[i]#charges[i]
+        for j in range(3):
+            born[i,j,j]+=charges[i]
 
     # Verify acoustic sum rules
     asr=np.zeros((3,3))
@@ -344,7 +342,7 @@ dummyy=range(len(borns_good))
 print(len(dummyy))
 print(len(borns_good))
 print(len(structs))
-def fit(dummy,q0_pz,d_pz,Zi,Zo):
+def fit(dummy,q0_sp,d_sp,q0_pz,d_pz,Z):
     """
     Fit function for curve fitting.
     We trick scipy into thinking the first argument does anything
@@ -353,9 +351,9 @@ def fit(dummy,q0_pz,d_pz,Zi,Zo):
     for struct in structs:
         struct.wrap()
         #born = np.ravel(born_parametrized(struct, d0,a,b)[::2,2,:2])
-        born = np.ravel(born_parametrized(struct,q0_pz,d_pz,Zi,Zo))
+        born = np.ravel(born_parametrized(struct,q0_sp,d_sp,q0_pz,d_pz,Z))
         born_out=np.concatenate((born_out,born))
-        x= (q0_pz,d_pz,Zi,Zo)
+        x= (q0_sp,d_sp,q0_pz,d_pz,Z)
     eps=1e-4
     print(np.sum(np.log(eps+np.abs(born_out-borns_good))-np.log(eps))/len(borns_good), x)
     return born_out
@@ -438,15 +436,15 @@ for it in range(iters):
 
 '''
 #q0_sp,r0_sp,d_sp,q0_pz,r0_pz,d_pz
-#results=curve_fit(fit, dummyy, borns_good ,maxfev=10000)#bounds=([-10,0,-10,0], [0,10,0,10])
-results=minimize(to_min, [105.01700087861991, 5.035552755839079, 2.7011688188221554, 0.25558413305279354],method='L-BFGS-B')
+results=curve_fit(fit, dummyy, borns_good ,maxfev=10000)#bounds=([-10,0,-10,0], [0,10,0,10])
+#results=minimize(to_min, [-2.47672731,  7.665274  , -4.45484642,  3.94347635,  1.886097], bounds=[(-10, 0), (0, 10), (-10, 0), (0, 10),(-10,10)],method='L-BFGS-B')
 
 
-#xx=results[0]
-xx=results.x
-print(results)
+xx=results[0]
+#xx=results.x
+#print(results)
 #print(fit(dummyy, *xx))
-#xx=[105.01700087861991, 5.035552755839079, 2.7011688188221554, 0.25558413305279354]
+#xx=[-4.869370518389789, 5.131816384251041, -0.45672144392713754, 3.1152864250892054, 0.26378085470275114]
 #xx=[0, 3.0747330960854087, -4.153344000000001, 2.1352313167259784, 3]
 #xx=[ 0, 0, -4.153344000000001, 2,3]
 #xx=[-4.86812875, 5.13215258, -0.06042762, 7.57358168, 0.26400839]
