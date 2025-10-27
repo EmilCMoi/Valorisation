@@ -8,7 +8,7 @@ Lflep, Lflep_r, Dflep, Dflep_r=cmaps()
 plt.rcParams.update({'font.size': 16})
 plt.rcParams.update({'font.family': 'sans-serif'})
 plt.rcParams['figure.constrained_layout.use'] = True
-c=0.9155
+c=0.09155
 def fit_x(t,a,prop):
     vtilde=0
     #v=c*(a*t+vtilde)/np.sqrt(c**2+(a*t)**2+2*a*t*vtilde+vtilde**2)
@@ -17,15 +17,15 @@ def fit_x(t,a,prop):
     return x*prop+0.000471
 
 
-#dVs=[-1,-2,-3,-4]
-dVs=[-1]
+dVs=[-1,-2,-3,-4]
+#dVs=[-1]
 Nx=1
 Ny=300
 dir='0'
-#Nsteps=1000
-#NstepsEfield=1000
-Nsteps=5000
-NstepsEfield=5000
+Nsteps=1000
+NstepsEfield=1000
+#Nsteps=5000
+#NstepsEfield=5000
 sampledColors=Dflep(np.linspace(0, 1, len(dVs)))
 for i,dV in enumerate(dVs):
     data=np.load(f"data/polarizations2_{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.npy")
@@ -49,20 +49,19 @@ def to_min(params):
 #fit=minimize(to_min,[1,1],method='Nelder-Mead',options={'xatol':1e-12,'fatol':1e-12,'maxfev':100000})
 #print(fit)
 #print(fit.x)
-
-#xx=[0.0005,0.9,-1e-4]
+xx=[ 5.40690555e-05, -9.66655713e-04]#[0.0005,0.9,-1e-4]
 #0.0005,0.9,-1e-4
 #1.633e-03  2.766e+00 -3.200e-05
 #xx=fit.x
-xx=[5.40690551e-04, -9.66655716e-05]
+#xx=[5.40690551e-04, -9.66655716e-05]
 plt.figure()
 plt.grid(True)
 for i in range(len(dVs)):
     data=np.load(f"data/polarizations2_{dir}_{dVs[i]}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.npy")
     dip=np.sum(data,axis=1)
     t=np.arange(len(dip))
-    plt.plot(t,fit_x(t,xx[0]*dVs[i],xx[1]),'b--')#,color=sampledColors[i])
-    plt.plot(t[::200],dip[::200],'x',label=rf"$E_z\approx{dVs[i]/(6.602/2):.2f}$ V/Å",color=sampledColors[i],markersize=10,linewidth=4)
+    plt.plot(t,fit_x(t,xx[0]*dVs[i],xx[1]),'--',color=sampledColors[i])#,'b--')#
+    plt.plot(t[::50],dip[::50],'x',label=rf"$E_z\approx{dVs[i]/(6.602/2):.2f}$ V/Å",color=sampledColors[i],markersize=10,linewidth=4)
 plt.legend()
 plt.xlabel("Time [fs]")
 plt.ylabel("Total Dipole moment [a.u.]")

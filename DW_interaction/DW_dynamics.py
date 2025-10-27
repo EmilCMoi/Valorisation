@@ -95,7 +95,7 @@ def get_polarizations(system,Nx,Ny,dir):
         SP_v=np.array([0,a*np.sqrt(3)/3])
     elif dir=='60' or dir =='30':
         SP_v=np.array([-a*np.sqrt(3)/3*np.cos(np.pi/3)/2,a*np.sqrt(3)/3*np.sin(np.pi/3)/2])
-    phi=np.linalg.norm(deformations[:,:2]-SP_v,axis=1)
+    phi=np.linalg.norm(deformations[:,:2],axis=1)#-SP_v,axis=1)
 
     polarizations /= (Ll*Lt)
     return polarizations, phi

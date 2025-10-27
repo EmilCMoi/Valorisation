@@ -24,7 +24,7 @@ def fit_v(t,dV,c=0.9155):
 ts=np.arange(1000)
 plt.figure()
 plt.grid(True)
-plt.plot(ts,-fit_v(ts,-10)/c,'r-',label='-10 V')
+plt.plot(ts,-fit_v(ts,-1),'r-',label='-10 V')
 for i in [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9]:
     plt.axhline(i,ls='--',color='gray')
 plt.show()
