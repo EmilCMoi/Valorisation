@@ -1007,3 +1007,130 @@ def run_dw_dynamics_track_energies(Nx,Ny,dir,NstepsEfield,Nsteps,dV,track_indice
     np.save(f"data/deformations2{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.npy",deformations)
     np.save(f"data/velocities_track{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.npy",velocities_track)
     atoms2lammps(system,f"data/DW2{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.lammps")
+
+def continue_track_energies(New_steps,Nevery,Nx,Ny,dir,NstepsEfield,Nsteps,dV,track_indices,NVT=False,Temperature=0):
+    if dir=='0' or dir=='60':
+            la='y'
+            Ns=Ny
+            Nt=Nx
+    elif dir=='30' or dir == '90':
+            la='x'
+            Ns=Nx
+            Nt=Ny
+    if la=='x':
+            Lt=Ly
+            Ll=Lx
+            truth_axis=0
+            other_axis=1
+    elif la=='y':
+            Lt=Lx
+            Ll=Ly
+            truth_axis=1
+            other_axis=0
+
+    if not NVT:
+        mes='_'
+    else:
+        mes='_NVT_'+str(Temperature)+'K_' # Temperature is included for future proofing but is not currently implemented
+    
+    # Writing input file
+    with open(f"continue.template", "r") as file:
+        data = file.readlines()
+    data[19]='group track_indices id ' + ' '.join(map(str, track_indices)) + '\n'
+    data[26]="run "+str(New_steps)+"\n"
+    data[24]='dump Dtrack track_indices custom '+str(Nevery)+' velocities_track_'+str(NstepsEfield)+'.lammpstrj id type x y z vx vy vz\n'
+    data[23]=f"dump Ddump all atom {Nevery} output_{NstepsEfield}.lammpstrj\n"
+    data[28]=f"write_restart lammps_{NstepsEfield}.restart\n"
+
+    with open(f"input{mes}continue.lammps", "w") as file:
+        file.writelines(data)
+
+    # Running continuation of dynamics
+    os.system(f"cp data/DW2{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.lammps tmp_cont.lammps")
+    os.system(f"mpirun -np 16 lmp -in input{mes}continue.lammps > continue.log")
+
+def analyze_lammps_track(New_steps,Nevery,Nx,Ny,dir,NstepsEfield,Nsteps,dV,track_indices,NVT=False,Temperature=0):
+    if dir=='0' or dir=='60':
+            la='y'
+            Ns=Ny
+            Nt=Nx
+    elif dir=='30' or dir == '90':
+            la='x'
+            Ns=Nx
+            Nt=Ny
+    if la=='x':
+            Lt=Ly
+            Ll=Lx
+            truth_axis=0
+            other_axis=1
+    elif la=='y':
+            Lt=Lx
+            Ll=Ly
+            truth_axis=1
+            other_axis=0
+    if not NVT:
+        mes='_'
+    else:
+        mes='_NVT_'+str(Temperature)+'K_' # Temperature is included for future proofing but is not currently implemented
+
+    layer=np.loadtxt(f"layer_{dir}.txt")
+    traj=Trajectory(f'data/DW2{mes}{dir}_{dV}_{Nsteps+New_steps}_{NstepsEfield}_{Nx}_{Ny}.traj', 'a')
+    ref_config=read(f"data/DW2{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.traj",index=0)
+    polar=np.zeros((New_steps//Nevery,Ns,3))
+    defo=np.zeros((New_steps//Nevery,Ns))
+    vels_track=np.zeros((New_steps//Nevery,len(track_indices),3))
+    #fi=np.zeros((New_steps//Nevery,5))
+    ts=np.zeros(New_steps//Nevery)
+
+
+    #fits=np.loadtxt(f"data/fit2_vals{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.txt")
+    polarizations=np.load(f"data/polarizations2{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.npy")
+    deformations=np.load(f"data/deformations2{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.npy")
+    times=np.loadtxt(f"data/times{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.txt")
+    velocities_track=np.load(f"data/velocities_track{mes}{dir}_{dV}_{Nsteps}_{NstepsEfield}_{Nx}_{Ny}.npy")
+    #current_p0=fits[-1,:]
+    for i in trange(New_steps//Nevery):
+        system=read(f"output_{NstepsEfield}.lammpstrj",format="lammps-dump-text",index=i+1) # +1 as to not include the first step which is already included
+        vels=read(f"velocities_track_{NstepsEfield}.lammpstrj",format="lammps-dump-text",index=i+1)
+        #print(vels)
+        vels_track[i,:,:]=vels.get_velocities()
+        system.set_array("mol-id", layer, dtype=int)
+        system.symbols=ref_config.symbols
+        born, charges_lammps,charges=born_charges(system)
+
+        system.set_initial_charges(charges_lammps)
+        system.set_array("born", born)
+        system.set_array("charges_2", charges)
+        system.set_array("charges_model", charges)
+
+        voltages = [dV/2,-dV/2]
+
+        
+
+        layer=system.get_array("mol-id")
+        # This would only be needed to get the energy of the system
+        #voltage=np.zeros(len(system))
+        #for i in range(len(system)):
+        #    voltage[i]= voltages[int(layer[i])-1]
+        #system.set_array("voltage", voltage, dtype=float)
+        #xs=Ll*np.arange(Ns)
+        traj.write(system)
+        polar[i],defo[i]= get_polarizations(system,Nx=Nx,Ny=Ny,dir=dir)
+        ts[i]=(i+1)*Nevery+Nsteps
+        #fi[i,:],_=curve_fit(wall_fit,xs,defo[i],p0=current_p0,maxfev=10000)
+        #current_p0=fi[i,:]
+    
+    #fits=np.concatenate((fits,fi),axis=0)
+    polarizations=np.concatenate((polarizations,polar[:,:,2]),axis=0)
+    deformations=np.concatenate((deformations,defo),axis=0)
+    times=np.concatenate((times,ts),axis=0)
+    velocities_track=np.concatenate((velocities_track,vels_track),axis=0)
+    traj.close()
+    # If everything went well, we store the results
+    os.system(f"lmp -restart2data lammps_{NstepsEfield}.restart continue_{NstepsEfield}.lmp > log2.lammps")
+    os.system(f"cp continue_{NstepsEfield}.lmp data/DW2{mes}{dir}_{dV}_{Nsteps+New_steps}_{NstepsEfield}_{Nx}_{Ny}.lammps")
+    #np.savetxt(f"data/fit2_vals{mes}{dir}_{dV}_{Nsteps+New_steps}_{NstepsEfield}_{Nx}_{Ny}.txt",fits)
+    np.save(f"data/polarizations2{mes}{dir}_{dV}_{Nsteps+New_steps}_{NstepsEfield}_{Nx}_{Ny}.npy",polarizations)
+    np.save(f"data/deformations2{mes}{dir}_{dV}_{Nsteps+New_steps}_{NstepsEfield}_{Nx}_{Ny}.npy",deformations) 
+    np.savetxt(f"data/times{mes}{dir}_{dV}_{Nsteps+New_steps}_{NstepsEfield}_{Nx}_{Ny}.txt",times)
+    np.save(f"data/velocities_track{mes}{dir}_{dV}_{Nsteps+New_steps}_{NstepsEfield}_{Nx}_{Ny}.npy",velocities_track)

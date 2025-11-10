@@ -13,6 +13,8 @@ from model.born import dipole_moment, born_charges
 from ase.io import read
 from ase.io.trajectory import Trajectory
 from ase.units import fs, kB
+from ase.optimize import BFGS, LBFGS, FIRE
+from ase.optimize.sciopt import SciPyFminCG
 Lflep, Lflep_r, Dflep, Dflep_r=cmaps()
 Ly=2.511
 Lx=4.349179577805451
@@ -180,7 +182,7 @@ new_system=file2atoms('hyst_def_basis.lmp')
 new_system.calc=LAMMPS()
 new_system.pbc=[True,True,False]
 fr_dir=[False,False,True]
-new_system.calc.freeze_atoms(np.concatenate((press_indices,press2_indices)),np.repeat(fr_dir,len(np.concatenate((press_indices,press2_indices)))))
+new_system.calc.freeze_atoms(np.concatenate((press_indices,press2_indices)),np.reshape(np.repeat(fr_dir,len(np.concatenate((press_indices,press2_indices)))),(3,-1)).T)
 
 def V_triangular(t,Nsteps,Vmax):
     if t<Nsteps/4:
@@ -190,7 +192,7 @@ def V_triangular(t,Nsteps,Vmax):
     else:
         return 4*Vmax*(t/Nsteps -1)
     
-Nsteps=10000
+Nsteps=8
 Vmax=1
 # Nsteps 4000 maybe more later
 # Vmax 1 3 5 10
@@ -213,11 +215,32 @@ plt.show()
 plt.show()
 
 
-run_dw_dynamics_frozen(new_system,Nsteps,V_triangular,[Vmax],NVT=False,Temperature=0)
+#run_dw_dynamics_frozen(new_system,Nsteps,V_triangular,[Vmax],NVT=False,Temperature=0)
 
+# Run bfgs minimization to relax the system as a function of Efield
+energies=np.zeros(Nsteps)
+polarizations=np.zeros((Nsteps,Ny))
+for i in trange(Nsteps):
+    Vnow=V_triangular(i,Nsteps,Vmax)
+    voltages = [Vnow/2,-Vnow/2]
+    layer=new_system.get_array("mol-id")
+    voltage=np.zeros(len(new_system))
+    for k in range(len(new_system)):
+        voltage[k]= voltages[int(layer[k])-1]
+    print(voltage)
+    new_system.set_array("voltage", voltage, dtype=float)
+    new_system.calc=LAMMPS()
+    new_system.calc.freeze_atoms(np.concatenate((press_indices,press2_indices)),np.reshape(np.repeat(fr_dir,len(np.concatenate((press_indices,press2_indices)))),(3,-1)).T)
+    opt=FIRE(new_system,dt=1*fs,downhill_check=True)
+    #opt=SciPyFminCG(new_system)
+    opt.run(fmax=0.002)
+    polarizations[i,:] = get_polarizations(new_system,Nx,Ny,dir)[0][:,2]
+    energies[i]=new_system.get_potential_energy()
+#polarizations=polarizations[:,:,2]
+times=np.arange(Nsteps)
 #np.loadtxt(f"data/fit_hyst.txt")
-times=np.loadtxt(f"data/times_hyst_{Nsteps}_[{Vmax}].txt")
-polarizations=np.load(f"data/polarizations_hyst_{Nsteps}_[{Vmax}].npy")
+#times=np.arange(Nsteps)#np.loadtxt(f"data/times_hyst_{Nsteps}_[{Vmax}].txt")
+#polarizations=np.load(f"data/polarizations_hyst_{Nsteps}_[{Vmax}].npy")
 #deformations=np.load(f"data/deformations_hyst.npy")
 plt.figure()
 plt.plot(times,polarizations.mean(axis=1))

@@ -145,10 +145,14 @@ class LAMMPS(Calculator):
         if "forces" in properties:
             f = np.array(self.lmp.gather_atoms("f", 1, 3)).reshape(-1, 3)
             #f-=atoms.get_array("born")*atoms.get_array("voltage")
+            
             for i in range(len(atoms)):
                 f[i,:2]-= atoms.get_array("born")[i,:2]*atoms.get_array("voltage")[i]
                 if i in self.frozen_indices:
-                    for j,d in enumerate(self.frozen_directions):
+                    k=np.where(self.frozen_indices==i)[0][0]
+                    for j,d in enumerate(self.frozen_directions[k]):
+                        #print(i,j)
+                        #print(self.frozen_directions)
                         if d:
                             f[i,j]=0.0
                 #f[i]-= atoms.get_array("born")[i]*atoms.get_array("voltage")[i]
