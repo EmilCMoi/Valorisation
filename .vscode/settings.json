@@ -5,6 +5,12 @@
         "new": "cpp",
         "ostream": "cpp",
         "random": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "filesystem": "cpp",
+        "*.inc": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp",
+        "iosfwd": "cpp",
+        "list": "cpp"
     }
 }

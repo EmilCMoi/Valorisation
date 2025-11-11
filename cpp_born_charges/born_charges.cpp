@@ -17,6 +17,8 @@
 #include "modify.h"
 #include "fix.h"
 #include "fix_external.h"
+#include "neighbor.h"
+#include "neigh_list.h"
 
 // necessary for drivinng LAMMPS from external code
 #include "many2one.h"
@@ -38,6 +40,7 @@ struct Info {
   LAMMPS *lmp;
   FixExternal *fix;
   double *efield;
+  int nsteps;
 };
 
 /*
@@ -114,11 +117,13 @@ int main(int narg, char **arg)
   info.me = me;
   info.efield = &efield_value;
   info.lmp = lmp;
-  //int niter=1000;
-  
-  //if (lammps==1)
-  //{
-  //int ifix = lmp->modify->get_fix_by_id("born");
+  info.nsteps = nsteps;
+  // Setting up output files
+  // output velocities in 3 files for x,y,z components, 2 lines per timestep, one with indices, one with values
+  // output dipole moment in one file, one line per timestep with 3 values
+  // output "local dipole moment" in 3 files for x,y,z components, one line per timestep with N values (N = # of atoms)
+  // output file name will be unique by adding efield value and # of steps to output file name
+
   if (lammps == 1) {
     FixExternal *fix = (FixExternal *) lmp->modify->get_fix_by_id("born");//lmp->modify->fix[ifix];
     info.fix = fix;
@@ -144,70 +149,160 @@ void born_callback(void *ptr, bigint ntimestep, int nlocal, int *id, double **x,
 {
   // cast the void pointer to a LAMMPS pointer
   //cout << "Entering born_callback..." << endl;
+  
   Info *info = (Info *) ptr;
   LAMMPS *lmp = info->lmp;
-  double *ef = info->efield;
-  int *iatom = new int[nlocal];
-  int *numneigh = new int[nlocal];
-  int **neighbors = new int *[nlocal];
+  int nghost= lammps_extract_setting(lmp,"nghost");
+  double *efield = info->efield; // In current implementation, this is the interlayer voltage difference.
+  double rcut=8.0; // Angstrom
+  
+  
   double polarization[3]={0.0,0.0,0.0};
+  double charges_born[nlocal]={0.0}; // Could be a point of failure
+  double pcharges_born[nlocal][3]={{0.0,0.0,0.0}}; // derivative of partial charges
   // get access to atom properties from LAMMPS
   Atom *atom = lmp->atom;
-
+ 
+  //cout << lammps_extract_setting(lmp,"nghost") << endl;
+  double beta=0.56166857; // Angstrom^-1
+  double q=0.0;
   int *atom_type = atom->type;
   int *atom_molecule = atom->molecule;
-
   int ntypes = lmp->atom->ntypes;
   FixExternal *fix = info->fix;
-  double *energy_per_atom = new double[nlocal];
-  double *charges = atom->q;
+  double *energy_per_atom=new double[nlocal];
+  //double *charges = atom->q;
   double energy = 0.0;
-  // for each local atom, compute born charge and apply efield force
-
-  // allocate a contiguous 3D array [nlocal][3][3] flattened to 1D
-  double *born_charges_dummy = new double[nlocal * 3 * 3];
-
-  for (int idx = 0; idx < nlocal * 3 * 3; ++idx) {
-    born_charges_dummy[idx] = 0.0; // initialization
-  }
-  // Create a 3D view onto the flat buffer: [nlocal][3][3]
-  double (*born_charges)[3][3] =
-    reinterpret_cast<double (*)[3][3]>(born_charges_dummy);
-
-  // BEC calculation, performance is almost the same as without driving script wuth  one nlocal loop
-  for (size_t i=0; i<nlocal; i++){
-    //cout << i << " " << numneigh[i] ;
-    lammps_neighlist_element_neighbors(lmp,1,nlocal,iatom,numneigh,neighbors);
-    for (int neigh=0; neigh<*numneigh; neigh++){
-      int j = *neighbors[neigh];
-      //cout << j << endl;
-      int jtype = atom_type[j];
+  
+  // Find the neighbor list index for the pair style
+  int nlindex = lammps_find_pair_neighlist(lmp, "zero", 0, 0, 0);
+  
+  // Get the number of atoms in this neighbor list (inum = number of atoms with neighbors)
+  int num_atoms_with_neighbors = lammps_neighlist_num_elements(lmp, nlindex);
+  
+  // Single loop over all atoms in the neighbor list
+  for (int element = 0; element < num_atoms_with_neighbors; element++) {
+    // Declare variables to receive the data for this ONE atom
+    int iatom;           // Will hold the local index of the central atom
+    int numneigh;        // Will hold the number of neighbors
+    int *neighbors;      // Will hold pointer to the neighbor list
+    
+    // Get neighbor info for this one atom
+    lammps_neighlist_element_neighbors(lmp, nlindex, element, &iatom, &numneigh, &neighbors);
+    
+    // Check if we got valid data
+    if (iatom < 0 || neighbors == nullptr) continue;
+    
+    // Now iatom is the local index of the central atom
+    int atom_i_local_index = iatom;
+    int atom_i_type = atom->type[atom_i_local_index];
+    int atom_i_molecule = atom->molecule[atom_i_local_index];
+    
+    // Determine q value based on atom type
+    if (atom_i_type == 1) {
+      q = -8.11256518;
+    } else if (atom_i_type == 2) {
+      q = 8.11256518;
+    } else {
+      printf("ERROR: Unknown atom type for born charge calculation\n");
+      MPI_Abort(MPI_COMM_WORLD, 1);
+    }
+    
+    // Determine voltage difference based on which layer the atom belongs to
+    double dV = (atom_i_molecule == 1) ? (*efield) / 2.0 : -(*efield) / 2.0;
+    
+    // Loop over all neighbors of this atom to calculate Born charges
+    for (int j = 0; j < numneigh; j++) {
+      int neighbor_j_local_index = neighbors[j];
+      /*
+      if (neighbor_j_local_index > nlocal){
+        cout << "Ghost atom neighbor index: " << neighbor_j_local_index << endl;
+      }
+      */
+      // neighbor_j_local_index can be either:
+      // - A local atom: 0 <= neighbor_j_local_index < nlocal
+      // - A ghost atom: nlocal <= neighbor_j_local_index < nlocal + nghost
+      // Both cases are handled correctly since atom->type, atom->molecule, and x 
+      // are all sized [nlocal + nghost]
       
-      // simple pairwise interaction to modify born charges
-      for (int m=0; m<3; m++){
-        for (int n=0; n<3; n++){
-          born_charges[i][m][n] += 0.0001 * jtype; // dummy interaction effect
-          //cout << "all good so far..." << endl;
+      // Only calculate for interlayer interactions
+      if ((atom_i_molecule != atom->molecule[neighbor_j_local_index]) and (atom_i_type != atom->type[neighbor_j_local_index])) {
+        // Calculate distance vector and magnitude
+        // dx points from j to i (important for sign convention)
+        double dx = x[atom_i_local_index][0] - x[neighbor_j_local_index][0];
+        double dy = x[atom_i_local_index][1] - x[neighbor_j_local_index][1];
+        double dz = x[atom_i_local_index][2] - x[neighbor_j_local_index][2];
+        double r = sqrt(dx*dx + dy*dy + dz*dz);
+        
+        // Calculate tapering function and its derivative
+        double r_rc = r / rcut;
+        double Tap = 20*pow(r_rc, 7) - 70*pow(r_rc, 6) + 84*pow(r_rc, 5) - 35*pow(r_rc, 4) + 1;
+        double dTap = (140*pow(r_rc, 6) - 420*pow(r_rc, 5) + 420*pow(r_rc, 4) - 140*pow(r_rc, 3)) / rcut;
+        
+        // Calculate exponential term
+        double exp_term = exp(-beta * r);
+        
+        // Determine q for neighbor atom
+        /*
+        double q_neighbor;
+        int neighbor_j_type = atom->type[neighbor_j_local_index];
+        if (neighbor_j_type == 1) {
+          q_neighbor = -8.11256518;
+        } else if (neighbor_j_type == 2) {
+          q_neighbor = 8.11256518;
+        } else {
+          q_neighbor = 0.0; // Should not happen, but safe fallback
         }
+        */
+        // Accumulate Born effective charge for atom i
+        // This represents the charge induced on atom i due to neighbor j
+        double charge_contribution = q * exp_term * Tap;
+        charges_born[atom_i_local_index] += charge_contribution;
+        
+        // Accumulate derivative of partial charges (for forces on atom i)
+        // These are derivatives with respect to atom i's position
+        double common_factor = q * exp_term;
+        double dq_dx = common_factor * (-beta * Tap * dx/r + dTap * dx/r);
+        double dq_dy = common_factor * (-beta * Tap * dy/r + dTap * dy/r);
+        double dq_dz = common_factor * (-beta * Tap * dz/r + dTap * dz/r);
+        
+        pcharges_born[atom_i_local_index][0] += dq_dx;
+        pcharges_born[atom_i_local_index][1] += dq_dy;
+        pcharges_born[atom_i_local_index][2] += dq_dz;
+        
+        // Newton's third law: if neighbor j is also a local atom, accumulate its contributions
+        // This ensures proper force balance and avoids double-counting in parallel simulations
+        /*
+        if (neighbor_j_local_index < nlocal) {
+          // Neighbor j is local, so we also update its Born charges
+          // The contribution to j is opposite in sign for the charge derivative
+          charges_born[neighbor_j_local_index] -= charge_contribution;
+          
+          // Forces on j are opposite to forces on i (Newton's 3rd law)
+          pcharges_born[neighbor_j_local_index][0] -= dq_dx;
+          pcharges_born[neighbor_j_local_index][1] -= dq_dy;
+          pcharges_born[neighbor_j_local_index][2] -= dq_dz;
+        }
+        */  
+        // If neighbor_j_local_index >= nlocal, it's a ghost atom, and its owning processor
+        // will compute its contributions, so we don't accumulate here
       }
     }
-  }
-  
-  // born_charges_3d[i][j][k] is now valid and refers to born_charges[i*9 + j*3 + k]for (int i = 0; i < nlocal; i++) {
-  for (int i = 0; i < nlocal; i++) {
-    int itype = atom_type[i];
-    //double born_charge = 0.001 * itype; // dummy born charge calculation
-    double efield[3] = {0.0, 0.0, *ef}; // example electric field in z-direction
-
-    // apply force due to electric field: F = qE
-    f[i][0] = born_charges[i][0][0] * efield[0]+ born_charges[i][0][1] * efield[1]+ born_charges[i][0][2] * efield[2];
-    f[i][1] = born_charges[i][1][0] * efield[1]+ born_charges[i][1][1] * efield[1]+ born_charges[i][1][2] * efield[2];
-    f[i][2] = born_charges[i][2][0] * efield[2]+ born_charges[i][2][1] * efield[2]+ born_charges[i][2][2] * efield[2];
-    energy_per_atom[i] =  charges[i]*(efield[0]*x[i][0] + efield[1]*x[i][1] + efield[2]*x[i][2]); // dummy energy per atom calculation
-    energy +=  energy_per_atom[i];
-    polarization[0] += charges[i]*x[i][0];
-    polarization[1] += charges[i]*x[i][1];
-    polarization[2] += charges[i]*x[i][2];
+    
+    // Now that we've accumulated all neighbor contributions, apply forces and calculate energies
+    // Apply force due to electric field: F = -dq/dr * V
+    f[atom_i_local_index][0] = pcharges_born[atom_i_local_index][0] * dV;
+    f[atom_i_local_index][1] = pcharges_born[atom_i_local_index][1] * dV;
+    f[atom_i_local_index][2] = 0.0;  // pcharges_born[atom_i_local_index][2] * dV;
+    
+    // Calculate energy per atom: E = q * V
+    energy_per_atom[atom_i_local_index] = charges_born[atom_i_local_index] * dV;
+    energy += energy_per_atom[atom_i_local_index];
+    
+    // Calculate polarization contributions
+    polarization[0] += charges_born[atom_i_local_index] * x[atom_i_local_index][0];
+    polarization[1] += charges_born[atom_i_local_index] * x[atom_i_local_index][1];
+    polarization[2] += charges_born[atom_i_local_index] * x[atom_i_local_index][2];
   }
   //cout << energy << endl;
   // cout << energy_per_atom[0] << endl;
@@ -222,6 +317,29 @@ void born_callback(void *ptr, bigint ntimestep, int nlocal, int *id, double **x,
   MPI_Allreduce(&energy, &total_energy, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
   //cout << "Total energy from born charges: " << total_energy << endl;
   fix->set_energy_global(total_energy);
+  if (info->me == 0) {
+    string fName="output_"+to_string(*efield)+"_"+to_string(info->nsteps)+".txt";
+    if (ntimestep == 0) {
+      ofstream outfile (fName, ios::trunc);
+      outfile << "#Timestep Total_Energy Polarization_X Polarization_Y Polarization_Z" << endl;
+      outfile << ntimestep << " "
+            << total_energy << " "
+            << total_polarization[0] << " "
+            << total_polarization[1] << " "
+            << total_polarization[2] << endl;
+      outfile.close();
+
+    }else{
+    ofstream outfile (fName, ios::app);
+    outfile << ntimestep << " "
+            << total_energy << " "
+            << total_polarization[0] << " "
+            << total_polarization[1] << " "
+            << total_polarization[2] << endl;
+    outfile.close();
+    }
+    
+  }
   /*
   if (info->me == 0){
     ofstream outfile ("output.txt");
@@ -251,9 +369,9 @@ void born_callback(void *ptr, bigint ntimestep, int nlocal, int *id, double **x,
   // Do NOT delete neighbors[i]; you did not allocate those.
   //delete energy;
   delete [] energy_per_atom;
-  delete [] iatom;
-  delete [] numneigh;
-  delete [] neighbors;
+  //delete [] iatom;
+  //delete [] numneigh;
+  //delete [] neighbors;
   /*
   for (int i = 0; i < nlocal; i++) {
     for (int j = 0; j < 3; j++) {
@@ -262,7 +380,9 @@ void born_callback(void *ptr, bigint ntimestep, int nlocal, int *id, double **x,
     delete [] born_charges[i];
   }
     */
-  delete [] born_charges;
+  //delete [] born_charges;
+  //delete [] charges_born;
+  //delete [] pcharges_born;
   //delete [] charges;
   //delete [] born_charges_3d;
 }
